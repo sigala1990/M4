@@ -66,7 +66,7 @@ Creamos los *PictureBox* necesarios para introducir la combinación que quiere e
 - **crear_linea_bola()** -> Crea tantos *PictureBox* como sean necesarios. Junto a estos se creará un botón que permita comprobar cuántos colores hemos acertador llamado *Comprobar*
 - Cada *PictureBox* se va a llamar **bola**
 
-### Branch 6: PonerCombinaciónDelUsuario
+### Branch 7: PonerCombinaciónDelUsuario
 
 Añadiremos la funcionalidad para seleccionar los colores a comprobar en los *PictureBox* de la rama anterior.
 
@@ -74,7 +74,7 @@ Añadiremos la funcionalidad para seleccionar los colores a comprobar en los *Pi
 - **Click Derecho** -> Al pulsar con el click derecho en los *PictureBox* pondremos el color en este siguiendo un orden de derecha a izquierda tal y como nos salen en el apartat de **Colores Disponibles**
 - **Mantener la secuencia de click-color, seguir en la posicion del color en la que nos quedamos cuando se hace click derecho o izquierdo, es decir una consistencia en quanto al orden de poner los colores**
 
-### Branch 7: ComprobandoAciertos
+### Branch 8: ComprobandoAciertos
 
 Añadiremos la funcionalidad cunado pulsamos el botón "Comprobar":
 
@@ -88,7 +88,7 @@ Añadiremos la funcionalidad cunado pulsamos el botón "Comprobar":
 - **Gastado todos los intentos** -> Mostrar mensaje de no superado y revelar la combinación secreta. **Por defecot 10 intentos!!**
 - **Seguir jugando** -> Si no hemos ganado ni perdido seguimos jugando creando una nueva fila de componentes debajo de la anterior para que se puedan elegir de nuevo los colores
 
-### Branch 8: ElegirColores
+### Branch 9: ElegirColores
 
 En menú archivo ñadir una nueva sección llamda *Opciones*: 
 
