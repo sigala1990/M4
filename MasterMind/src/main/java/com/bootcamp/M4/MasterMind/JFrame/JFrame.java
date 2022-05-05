@@ -26,13 +26,11 @@ public class JFrame extends javax.swing.JFrame implements ActionListener {
 	private JMenu archivo, ayuda;
 	private JMenuItem nuevoJuego, salir, nivel, comoJugar, acercaDe;
 	private JLabel lblMensajes;
-<<<<<<< HEAD
-	private String instrucciones = "COMO SE JUEGA\nEn Mastermind compiten 2 jugadores, uno de ellos creará un código oculto con 5 clavijas de colores, pudiendo hacer las combinaciones con los 8 colores disponibles e incluso repitiendo color si lo desea. El código de colores debe de ocultarse con el escudo para que no pueda verlo el oponente, que deberá acertar en el menor número posible de jugadas la clave para obtener una buena puntuación. Para descifrar el código secreto de colores el jugador deberá ir probando combinaciones aleatorias de colores, y en cada combinación, el jugador contrario debe darle pistas mediante las espigas blancas y negras. Por cada clavija acertada en color y posición, colocará una espiga negra, y por cada color acertado pero en un lugar equivocado colocara una espiga blanca.";
-	public EleccionNivel eleccionNivel;
-=======
+public EleccionNivel eleccionNivel;
+
 	private String instrucciones = "COMO SE JUEGA\n\nEn Mastermind compiten 2 jugadores, uno de \nellos creará un código oculto con 5 clavijas de \ncolores, pudiendo hacer las combinaciones con \nlos 8 colores disponibles e incluso repitiendo \ncolor si lo desea. El código de colores debe de \nocultarse con el escudo para que no pueda verlo \nel oponente, que deberá acertar en el menor \nnúmero posible de jugadas la clave para obtener \nuna buena puntuación. Para descifrar el código \nsecreto de colores el jugador deberá ir probando \ncombinaciones aleatorias de colores, y en cada \ncombinación, el jugador contrario debe darle \npistas mediante las espigas blancas y negras. \nPor cada clavija acertada en color y posición, \ncolocará una espiga negra, y por cada color \nacertado pero en un lugar equivocado colocará \nuna espiga blanca.";
 
->>>>>>> branch '4_Menu_Archivo_Ayuda' of https://github.com/sigala1990/M4.git
+
 	/**
 	 * Launch the application.
 	 */
@@ -122,16 +120,11 @@ public class JFrame extends javax.swing.JFrame implements ActionListener {
 			// Salir del juego
 		}
 		if (e.getSource() == nivel) {
-<<<<<<< HEAD
+
 			eleccionNivel = new EleccionNivel();
 			eleccionNivel.setVisible(true); //Abre una ventana para seleccionar nivel
 			
-=======
 
-			EleccionNivel eleccionNivel = new EleccionNivel();
-			eleccionNivel.setVisible(true); // Abre una ventana para seleccionar nivel
-
->>>>>>> branch '4_Menu_Archivo_Ayuda' of https://github.com/sigala1990/M4.git
 		}
 		
 		if (e.getSource() == acercaDe) {
