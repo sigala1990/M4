@@ -4,8 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JRadioButton;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class EleccionNivel extends JFrame {
 
@@ -37,6 +42,35 @@ public class EleccionNivel extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-	}
 
+		JPanel panel = new JPanel();
+		panel.setBounds(24, 11, 400, 239);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JRadioButton rdbtnNivelPrincipiante = new JRadioButton("Principiante");
+		rdbtnNivelPrincipiante.setBounds(141, 66, 109, 23);
+		panel.add(rdbtnNivelPrincipiante);
+		
+		JRadioButton rdbtnNivelMedio = new JRadioButton("Medio");
+		rdbtnNivelMedio.setBounds(141, 94, 109, 23);
+		panel.add(rdbtnNivelMedio);
+		
+		JRadioButton rdbtnNivelAvanzado = new JRadioButton("Avanzado");
+		rdbtnNivelAvanzado.setBounds(141, 120, 109, 23);
+		panel.add(rdbtnNivelAvanzado);
+		
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.setBounds(91, 165, 89, 23);
+		panel.add(btnAceptar);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnCancelar.setBounds(189, 165, 89, 23);
+		panel.add(btnCancelar);
+
+	}
 }
