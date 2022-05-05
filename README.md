@@ -61,13 +61,6 @@ Creamos los *PictureBox* necesarios para introducir la combinación que quiere e
 
 ### Branch 6: PonerCombinaciónDelUsuario
 
-Creamos los *PictureBox* necesarios para introducir la combinación que quiere el jugador:
-
-- **crear_linea_bola()** -> Crea tantos *PictureBox* como sean necesarios. Junto a estos se creará un botón que permita comprobar cuántos colores hemos acertador llamado *Comprobar*
-- Cada *PictureBox* se va a llamar **bola**
-
-### Branch 6: PonerCombinaciónDelUsuario
-
 Añadiremos la funcionalidad para seleccionar los colores a comprobar en los *PictureBox* de la rama anterior.
 
 - **Click Izquierdo** -> Al pulsar con el click izquierdo en los *PictureBox* pondremos el color en este siguiendo un orden de izquierda a derecha tal y como nos salen en el apartat de **Colores Disponibles**
