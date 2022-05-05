@@ -10,10 +10,9 @@ public class ColoresDisponibles {
 	//List<Color> listaColores = new ArrayList<Color>();
 	List<String> listaColores = new ArrayList<String>();
 	List<String> arrayColor = new ArrayList<String>();
-	
 	int numColor;
-	public ColoresDisponibles() {
-		numColor = 5;
+	public ColoresDisponibles(int numColor) {
+		this.numColor = numColor;
 		boolean repetido = true;
 		
 		/*listaColores.add(Color.yellow);
@@ -96,13 +95,25 @@ public class ColoresDisponibles {
 	}
 	
 	public static int numRandom(int min, int max) { // metodo devuelve num random
+
 		return (int) (Math.random() * (max - min) + min);
 	}
+	
 	public void mostrarArray() {
 		for (int i = 0; i < arrayColor.size(); i++) {
 			System.out.println(arrayColor.get(i).toString());
 		}
 		
+	}
+
+	
+	public List<String> getArrayColor() {
+		return arrayColor;
+	}
+	
+
+	public void setArrayColor(List<String> arrayColor) {
+		this.arrayColor = arrayColor;
 	}
 	
 	
