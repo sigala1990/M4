@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 import javax.swing.WindowConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -18,6 +19,8 @@ public class EleccionNivel extends JFrame {
 
 	public static EleccionNivel frame;
 	private JPanel contentPane;
+	private int cantidadColores = 4;
+	private int cantidadIntentos = 10;
 	private JButton btnCancelar;
 
 	/**
@@ -52,6 +55,8 @@ public class EleccionNivel extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 
+		ButtonGroup nivelesDificultad = new ButtonGroup();
+
 		JRadioButton rdbtnNivelPrincipiante = new JRadioButton("Principiante");
 		rdbtnNivelPrincipiante.setBounds(141, 66, 109, 23);
 		panel.add(rdbtnNivelPrincipiante);
@@ -65,19 +70,40 @@ public class EleccionNivel extends JFrame {
 		rdbtnNivelAvanzado.setBounds(141, 120, 109, 23);
 		panel.add(rdbtnNivelAvanzado);
 
+		nivelesDificultad.add(rdbtnNivelPrincipiante);
+		nivelesDificultad.add(rdbtnNivelMedio);
+		nivelesDificultad.add(rdbtnNivelAvanzado);
+
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (rdbtnNivelMedio.isSelected()) {
+					cantidadColores = 5;
+					cantidadIntentos = 8;
+
+				} else if (rdbtnNivelAvanzado.isSelected()) {
+					cantidadColores = 6;
+					cantidadIntentos = 6;
+				}
+
+				System.out.println(getCantidadColores());
+				System.out.println(getCantidadIntentos());
+			}
+		});
+
 		btnAceptar.setBounds(91, 165, 89, 23);
 		panel.add(btnAceptar);
 
-		btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(getCantidadColores());
+				System.out.println(getCantidadIntentos());
 
-				//frame = new EleccionNivel();
-				if(frame != null) {
 					frame.setVisible(false);
 				}			
-			}
+			
 		});
 		// panel.close();
 		// JEleccionNivel.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -88,7 +114,13 @@ public class EleccionNivel extends JFrame {
 
 	}
 
+	public int getCantidadColores() {
 
-	
+		return cantidadColores;
+	}
 
+	public int getCantidadIntentos() {
+
+		return cantidadIntentos;
+	}
 }
