@@ -10,10 +10,9 @@ public class ColoresDisponibles {
 	//List<Color> listaColores = new ArrayList<Color>();
 	List<String> listaColores = new ArrayList<String>();
 	List<String> arrayColor = new ArrayList<String>();
-	
 	int numColor;
-	public ColoresDisponibles() {
-		numColor = 5;
+	public ColoresDisponibles(int numColor) {
+		this.numColor = numColor;
 		boolean repetido = true;
 		
 		/*listaColores.add(Color.yellow);
