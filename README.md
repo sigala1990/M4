@@ -66,7 +66,7 @@ Creamos los *PictureBox* necesarios para introducir la combinación que quiere e
 - **crear_linea_bola()** -> Crea tantos *PictureBox* como sean necesarios. Junto a estos se creará un botón que permita comprobar cuántos colores hemos acertador llamado *Comprobar*
 - Cada *PictureBox* se va a llamar **bola**
 
-### Branch 7: PonerCombinaciónDelUsuario
+### Branch 7: ClickCombinaciónDelUsuario
 
 Añadiremos la funcionalidad para seleccionar los colores a comprobar en los *PictureBox* de la rama anterior.
 
