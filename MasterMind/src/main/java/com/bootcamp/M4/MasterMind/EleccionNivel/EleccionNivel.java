@@ -8,12 +8,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JRadioButton;
+import javax.swing.WindowConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class EleccionNivel extends JFrame {
 
+	private static EleccionNivel JEleccionNivel;
 	private JPanel contentPane;
 
 	/**
@@ -23,8 +25,8 @@ public class EleccionNivel extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EleccionNivel frame = new EleccionNivel();
-					frame.setVisible(true);
+					JEleccionNivel = new EleccionNivel();
+					JEleccionNivel.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -67,6 +69,13 @@ public class EleccionNivel extends JFrame {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			//	panel.close();
+				//JEleccionNivel.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+					JEleccionNivel.setVisible(false);
+					JEleccionNivel.dispose();
+				
+				
+				//System.exit(0);
 			}
 		});
 		btnCancelar.setBounds(189, 165, 89, 23);
