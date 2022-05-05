@@ -76,7 +76,6 @@ public class JFrame extends javax.swing.JFrame implements ActionListener{
         acercaDe.addActionListener(this);
 
   
-		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -85,7 +84,7 @@ public class JFrame extends javax.swing.JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
