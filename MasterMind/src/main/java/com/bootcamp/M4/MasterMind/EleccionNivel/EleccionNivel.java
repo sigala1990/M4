@@ -7,17 +7,21 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import javax.swing.WindowConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class EleccionNivel extends JFrame {
 
+	public static EleccionNivel frame;
 	private JPanel contentPane;
 	private int cantidadColores = 4;
 	private int cantidadIntentos = 10;
+	private JButton btnCancelar;
 
 	/**
 	 * Launch the application.
@@ -26,7 +30,7 @@ public class EleccionNivel extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EleccionNivel frame = new EleccionNivel();
+					frame = new EleccionNivel();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,7 +43,7 @@ public class EleccionNivel extends JFrame {
 	 * Create the frame.
 	 */
 	public EleccionNivel() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -96,8 +100,15 @@ public class EleccionNivel extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(getCantidadColores());
 				System.out.println(getCantidadIntentos());
-			}
+
+					frame.setVisible(false);
+				}			
+			
 		});
+		// panel.close();
+		// JEleccionNivel.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		// JEleccionNivel.setVisible(false);
+
 		btnCancelar.setBounds(189, 165, 89, 23);
 		panel.add(btnCancelar);
 
