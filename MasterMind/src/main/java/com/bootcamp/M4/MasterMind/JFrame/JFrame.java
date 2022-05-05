@@ -20,7 +20,7 @@ public class JFrame extends javax.swing.JFrame implements ActionListener {
 	private JMenuBar menuBar;
 	private JMenu archivo, ayuda;
 	private JMenuItem nuevoJuego, salir, nivel, comoJugar, acercaDe;
-	private JLabel etiqueta;
+	private JLabel lblMensajes;
 
 	/**
 	 * Launch the application.
@@ -88,8 +88,12 @@ public class JFrame extends javax.swing.JFrame implements ActionListener {
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		lblMensajes = new JLabel("");
+		lblMensajes.setBounds(48, 35, 363, 193);
+		contentPane.add(lblMensajes);
 
 	}
 
@@ -105,11 +109,14 @@ public class JFrame extends javax.swing.JFrame implements ActionListener {
 
 		}
 		if (e.getSource() == comoJugar) {
-
+		/*	lblMensajes.setText("COMO SE JUEGA\nEn Mastermind compiten 2 jugadores, uno de ellos creará un código oculto con 5 clavijas de colores, pudiendo hacer las combinaciones con los 8 colores disponibles e incluso repitiendo color si lo desea. El código de colores debe de ocultarse con el escudo para que no pueda verlo el oponente, que deberá acertar en el menor número posible de jugadas la clave para obtener una buena puntuación. Para descifrar el código secreto de colores el jugador deberá ir probando combinaciones aleatorias de colores, y en cada combinación, el jugador contrario debe darle pistas mediante las espigas blancas y negras.\r\n"
+					+ "Por cada clavija acertada en color y posición, colocará una espiga negra,\r\n"
+					+ "y por cada color acertado pero en un lugar equivocado colocara una espiga\r\n"
+					+ "blanca. \r\n");*/
 		}
 		if (e.getSource() == acercaDe) {
-			JOptionPane.showMessageDialog(acercaDe, "Desarrolladores: Adrià Queralt, Marc Padrell e Ixabel Justo");
-
+			//JOptionPane.showMessageDialog(acercaDe, "Desarrolladores: Adrià Queralt, Marc Padrell e Ixabel Justo");
+			lblMensajes.setText("Desarrolladores: Adrià Queralt, Marc Padrell e Ixabel Justo");
 		}
 	}
 }
