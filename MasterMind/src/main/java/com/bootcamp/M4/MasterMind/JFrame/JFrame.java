@@ -18,6 +18,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 
 public class JFrame extends javax.swing.JFrame implements ActionListener {
 	private static JFrame frame;
@@ -25,8 +26,9 @@ public class JFrame extends javax.swing.JFrame implements ActionListener {
 	private JMenuBar menuBar;
 	private JMenu archivo, ayuda;
 	private JMenuItem nuevoJuego, salir, nivel, comoJugar, acercaDe;
-	private JLabel lblMensajes;
-public EleccionNivel eleccionNivel;
+	private int cantidadIntentos;
+	private int cantidadColores;
+	private EleccionNivel eleccionNivel;
 
 	private String instrucciones = "COMO SE JUEGA\n\nEn Mastermind compiten 2 jugadores, uno de \nellos creará un código oculto con 5 clavijas de \ncolores, pudiendo hacer las combinaciones con \nlos 8 colores disponibles e incluso repitiendo \ncolor si lo desea. El código de colores debe de \nocultarse con el escudo para que no pueda verlo \nel oponente, que deberá acertar en el menor \nnúmero posible de jugadas la clave para obtener \nuna buena puntuación. Para descifrar el código \nsecreto de colores el jugador deberá ir probando \ncombinaciones aleatorias de colores, y en cada \ncombinación, el jugador contrario debe darle \npistas mediante las espigas blancas y negras. \nPor cada clavija acertada en color y posición, \ncolocará una espiga negra, y por cada color \nacertado pero en un lugar equivocado colocará \nuna espiga blanca.";
 
@@ -54,6 +56,8 @@ public EleccionNivel eleccionNivel;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 
+	//	eleccionNivel.get
+		
 		/* Creamos el JMenuBar y lo asociamos con el JFrame */
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -100,11 +104,16 @@ public EleccionNivel eleccionNivel;
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
-
-		lblMensajes = new JLabel("");
-		lblMensajes.setBounds(10, 11, 414, 217);
-		contentPane.add(lblMensajes);
+		contentPane.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblNewLabel = new JLabel("New label");//EJ. AÑADIR
+		contentPane.add(lblNewLabel, BorderLayout.WEST);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");//EJ. AÑADIR
+		contentPane.add(lblNewLabel_1, BorderLayout.CENTER);
+		
+		JLabel lblNewLabel_2 = new JLabel("New label");//EJ. AÑADIR
+		contentPane.add(lblNewLabel_2, BorderLayout.EAST);
 		
 
 	}
@@ -121,14 +130,15 @@ public EleccionNivel eleccionNivel;
 		}
 		if (e.getSource() == nivel) {
 
-			eleccionNivel = new EleccionNivel();
+			EleccionNivel eleccionNivel = new EleccionNivel();
+			eleccionNivel.frame = eleccionNivel;
 			eleccionNivel.setVisible(true); //Abre una ventana para seleccionar nivel
 			
 
 		}
 		
 		if (e.getSource() == acercaDe) {
-			lblMensajes.setText("Desarrolladores: Adrià Queralt, Marc Padrell e Ixabel Justo");
+			//lblMensajes.setText("Desarrolladores: Adrià Queralt, Marc Padrell e Ixabel Justo");
 			// Muestra nuestros nombres
 		}
 		
