@@ -74,7 +74,6 @@ public class EleccionNivel extends JFrame {
 					JEleccionNivel.setVisible(false);
 					JEleccionNivel.dispose();
 				
-				
 				//System.exit(0);
 			}
 		});
