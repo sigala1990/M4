@@ -3,10 +3,11 @@ package com.bootcamp.M4.MasterMind.EleccionNivel;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JFrame;
+import com.bootcamp.M4.MasterMind.JFrame.MainJFrame;
 
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
@@ -22,6 +23,7 @@ public class EleccionNivel extends JFrame {
 	private int cantidadColores = 4;
 	private int cantidadIntentos = 10;
 	private JButton btnCancelar;
+	private boolean mainJframeOpen = false;
 
 	/**
 	 * Launch the application.
@@ -43,7 +45,7 @@ public class EleccionNivel extends JFrame {
 	 * Create the frame.
 	 */
 	public EleccionNivel() {
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -86,9 +88,14 @@ public class EleccionNivel extends JFrame {
 					cantidadColores = 6;
 					cantidadIntentos = 6;
 				}
-
-				System.out.println(getCantidadColores());
-				System.out.println(getCantidadIntentos());
+				MainJFrame jframe = new MainJFrame(cantidadColores, cantidadIntentos);
+				//	jframe.setCantidadColores(cantidadColores);
+					//jframe.setCantidadIntentos(cantidadIntentos);
+					jframe.setVisible(true);
+				
+					frame.setVisible(false);
+				// System.out.println(getCantidadColores());
+				// System.out.println(getCantidadIntentos());
 			}
 		});
 
@@ -98,20 +105,29 @@ public class EleccionNivel extends JFrame {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(getCantidadColores());
-				System.out.println(getCantidadIntentos());
 
-					frame.setVisible(false);
-				}			
+				//MainJFrame.mainJFrameOpen();
+				MainJFrame jframe = new MainJFrame(cantidadColores, cantidadIntentos);
+			//	jframe.setCantidadColores(cantidadColores);
+				//jframe.setCantidadIntentos(cantidadIntentos);
+				jframe.setVisible(true);
 			
+				frame.setVisible(false);
+			}
+
 		});
-		// panel.close();
-		// JEleccionNivel.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-		// JEleccionNivel.setVisible(false);
 
 		btnCancelar.setBounds(189, 165, 89, 23);
 		panel.add(btnCancelar);
 
+	}
+
+	public static EleccionNivel getFrame() {
+		return frame;
+	}
+
+	public void setFrame(EleccionNivel frame) {
+		EleccionNivel.frame = frame;
 	}
 
 	public int getCantidadColores() {
@@ -123,4 +139,13 @@ public class EleccionNivel extends JFrame {
 
 		return cantidadIntentos;
 	}
+
+	public boolean isMainJframe() {
+		return mainJframeOpen;
+	}
+
+	public void setMainJframe(boolean mainJframeOpen) {
+		this.mainJframeOpen = mainJframeOpen;
+	}
+
 }
