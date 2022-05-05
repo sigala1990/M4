@@ -27,7 +27,7 @@ El número de *PictureBox* dependerá del nivel escogid por el jugador.
 - Guardar los Colores de los componentes en un vectpr para la siguiente branch de combinacionSecreta -> **"colores_disponibles"**
 - Por defecto -> 4 *PictureBoxes*
 
-### Branch 3: ColmbinaciónSecreta
+### Branch 3: CombinaciónSecreta
 
 El número de *PictureBox* dependerá del nivel escogid por el jugador.
 
@@ -53,13 +53,6 @@ Se implementarán las opciones disponibles en el menú del juego distinguiendo e
 - **Acerca De** -> Nombre de los alumnos
 
 ### Branch 5: CrearCombinaciónDelUsuario
-
-Creamos los *PictureBox* necesarios para introducir la combinación que quiere el jugador:
-
-- **crear_linea_bola()** -> Crea tantos *PictureBox* como sean necesarios. Junto a estos se creará un botón que permita comprobar cuántos colores hemos acertador llamado *Comprobar*
-- Cada *PictureBox* se va a llamar **bola**
-
-### Branch 6: PonerCombinaciónDelUsuario
 
 Creamos los *PictureBox* necesarios para introducir la combinación que quiere el jugador:
 
