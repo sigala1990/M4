@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,21 +25,22 @@ import com.bootcamp.M4.MasterMind.EleccionNivel.EleccionNivel;
 
 public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 	private static MainJFrame frame;
-	private int cantidadColores;
-	private int cantidadIntentos;
+	private int cantidadColores, cantidadIntentos, cantidadIntentosContador;
+	private int posicioColorBotonIntento1, posicioColorBotonIntento2, posicioColorBotonIntento3,
+			posicioColorBotonIntento4;
 	private JPanel contentPane;
 	private JMenuBar menuBar;
 	private JMenu archivo, ayuda;
 	private JMenuItem nuevoJuego, salir, nivel, comoJugar, acercaDe;
 	public EleccionNivel eleccionNivel;
 	private String instrucciones = "COMO SE JUEGA\n\nEn Mastermind compiten 2 jugadores, uno de \nellos creará un código oculto con 5 clavijas de \ncolores, pudiendo hacer las combinaciones con \nlos 8 colores disponibles e incluso repitiendo \ncolor si lo desea. El código de colores debe de \nocultarse con el escudo para que no pueda verlo \nel oponente, que deberá acertar en el menor \nnúmero posible de jugadas la clave para obtener \nuna buena puntuación. Para descifrar el código \nsecreto de colores el jugador deberá ir probando \ncombinaciones aleatorias de colores, y en cada \ncombinación, el jugador contrario debe darle \npistas mediante las espigas blancas y negras. \nPor cada clavija acertada en color y posición, \ncolocará una espiga negra, y por cada color \nacertado pero en un lugar equivocado colocará \nuna espiga blanca.";
-	private boolean mainJframeOpen = false;
 	private JLabel lblNewLabel;
 	private JButton btnNewButton;
 	private List<JButton> listBotonesColoresDisponibles = new ArrayList<JButton>();
 	private List<Color> listColoresDisponibles = new ArrayList<Color>();
 	private List<JButton> listBotonesCombinacionSecreta = new ArrayList<JButton>();
 	private List<Color> listCombinacionSecreta = new ArrayList<Color>();
+	private List<JButton> listBotonesIntento = new ArrayList<JButton>();
 
 	/**
 	 * Launch the application.
@@ -64,7 +67,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		ColoresDisponibles coloresDisponibles = new ColoresDisponibles(cantidadColores);
 		rellenarListColoresDisponibles(coloresDisponibles.getArrayColor());
 		rellenarListaCombinacionSecreta();
-		
+
 		setDefaultCloseOperation(MainJFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 500);
 
@@ -113,11 +116,10 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-				
 
 		crearBottonesListaColoresDisponibles();
 		crearBottonesCombinacionSecreta();
+		crearBottonesIntento();
 	}
 
 	/* Método que implementa las acciones de cada ítem de menú */
@@ -158,8 +160,58 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		}
 	}
 
-	public static boolean mainJFrameOpen() {
-		return true;
+	public void crearBottonesIntento() {
+		int x = 50;
+		int y = 50;
+		for (int i = 0; i < cantidadColores; i++) {
+			JButton btnIntento = new JButton();
+			listBotonesIntento.add(btnIntento);
+			listBotonesIntento.get(i).setName("" + i);
+			listBotonesIntento.get(i).setBounds(x, y, 10, 10);
+			listBotonesIntento.get(i).addMouseListener(new MouseListener() {
+
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					// TODO Auto-generated method stub
+					if (e.getButton() == MouseEvent.BUTTON1) {// izq click
+						System.out.println("izq");
+
+					
+					}
+					if (e.getButton() == MouseEvent.BUTTON3) {// derecha click
+						System.out.println("derecha");
+					}
+				}
+			});
+			{
+				contentPane.add(listBotonesIntento.get(i));
+				x += 12;
+			}
+		}
 	}
 
 	public void crearBottonesListaColoresDisponibles() {
@@ -167,7 +219,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		int y = 50;
 		JLabel lbl_coloresDisponibles = new JLabel();
 		lbl_coloresDisponibles.setText("Colores Disponibles");
-		lbl_coloresDisponibles.setBounds((x-40), (y-40), 150, 50);
+		lbl_coloresDisponibles.setBounds((x - 40), (y - 40), 150, 50);
 		contentPane.add(lbl_coloresDisponibles);
 		for (int i = 0; i < cantidadColores; i++) {
 			JButton btnColorDisponible = new JButton();
@@ -178,18 +230,16 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 			contentPane.add(listBotonesColoresDisponibles.get(i));
 			x += 12;
 		}
-
 	}
-
 
 	public void crearBottonesCombinacionSecreta() {
 		int x = 400;
 		int y = 100;
 		JLabel lbl_CombinacionSecreta = new JLabel();
 		lbl_CombinacionSecreta.setText("Combinacion Secreta");
-		lbl_CombinacionSecreta.setBounds((x-40), (y-40), 150, 50);
+		lbl_CombinacionSecreta.setBounds((x - 40), (y - 40), 150, 50);
 		contentPane.add(lbl_CombinacionSecreta);
-		for (int i = 0; i < cantidadColores; i++) {
+		for (int i = 0; i < 4; i++) {
 			JButton btnCombinacionSecreta = new JButton();
 			listBotonesCombinacionSecreta.add(btnCombinacionSecreta);
 			listBotonesCombinacionSecreta.get(i).setBounds(x, y, 10, 10);
@@ -199,7 +249,9 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 			x += 12;
 		}
 	}
-	public void rellenarListColoresDisponibles(List<String> listColoresDisponibles) {/// OJO con el this, son variables distintas
+
+	public void rellenarListColoresDisponibles(List<String> listColoresDisponibles) {/// OJO con el this, son variables
+																						/// distintas
 		for (int i = 0; i < listColoresDisponibles.size(); i++) {
 			switch (listColoresDisponibles.get(i).toString().toLowerCase()) {
 			case "yellow":
@@ -229,12 +281,12 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 	}
 
 	public void rellenarListaCombinacionSecreta() {
-		for (int i = 0; i <listColoresDisponibles.size() ; i++) {
-			int posicionRandom = numRandom(0,listColoresDisponibles.size());
+		for (int i = 0; i < listColoresDisponibles.size(); i++) {
+			int posicionRandom = numRandom(0, listColoresDisponibles.size());
 			listCombinacionSecreta.add(listColoresDisponibles.get(posicionRandom));
 		}
 	}
-	
+
 	public int getCantidadColores() {
 		return cantidadColores;
 	}
@@ -250,6 +302,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 	public void setCantidadIntentos(int cantidadIntentos) {
 		this.cantidadIntentos = cantidadIntentos;
 	}
+
 	public static int numRandom(int min, int max) { // metodo devuelve num random
 		return (int) (Math.random() * (max - min) + min);
 	}
