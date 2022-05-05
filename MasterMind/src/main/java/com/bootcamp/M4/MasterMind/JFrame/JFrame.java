@@ -25,7 +25,7 @@ public class JFrame extends javax.swing.JFrame implements ActionListener {
 	private JMenuItem nuevoJuego, salir, nivel, comoJugar, acercaDe;
 	private JLabel lblMensajes;
 	private String instrucciones = "COMO SE JUEGA\nEn Mastermind compiten 2 jugadores, uno de ellos creará un código oculto con 5 clavijas de colores, pudiendo hacer las combinaciones con los 8 colores disponibles e incluso repitiendo color si lo desea. El código de colores debe de ocultarse con el escudo para que no pueda verlo el oponente, que deberá acertar en el menor número posible de jugadas la clave para obtener una buena puntuación. Para descifrar el código secreto de colores el jugador deberá ir probando combinaciones aleatorias de colores, y en cada combinación, el jugador contrario debe darle pistas mediante las espigas blancas y negras. Por cada clavija acertada en color y posición, colocará una espiga negra, y por cada color acertado pero en un lugar equivocado colocara una espiga blanca.";
-
+	public EleccionNivel eleccionNivel;
 	/**
 	 * Launch the application.
 	 */
@@ -71,13 +71,15 @@ public class JFrame extends javax.swing.JFrame implements ActionListener {
 		archivo.add(nuevoJuego);
 		nuevoJuego.addActionListener(this);
 
+		nivel = new JMenuItem("Nivel");
+		archivo.add(nivel);
+		nivel.addActionListener(this);
+		
 		salir = new JMenuItem("Salir");
 		archivo.add(salir);
 		salir.addActionListener(this);
 
-		nivel = new JMenuItem("Nivel");
-		archivo.add(nivel);
-		nivel.addActionListener(this);
+
 
 		/*
 		 * Creamos los objetos de la clase JMenuItem y los asociamos con el JMenu Ayuda
@@ -96,8 +98,9 @@ public class JFrame extends javax.swing.JFrame implements ActionListener {
 		contentPane.setLayout(null);
 
 		lblMensajes = new JLabel("");
-		lblMensajes.setBounds(48, 35, 363, 193);
+		lblMensajes.setBounds(10, 11, 414, 217);
 		contentPane.add(lblMensajes);
+		
 
 	}
 
@@ -111,10 +114,9 @@ public class JFrame extends javax.swing.JFrame implements ActionListener {
 			//Salir del juego
 		}
 		if (e.getSource() == nivel) {
-			
-			EleccionNivel eleccionNivel = new EleccionNivel();
+			eleccionNivel = new EleccionNivel();
 			eleccionNivel.setVisible(true); //Abre una ventana para seleccionar nivel
-
+			
 		}
 		if (e.getSource() == comoJugar) {
 			lblMensajes.setText("Cómo se juega"); 
