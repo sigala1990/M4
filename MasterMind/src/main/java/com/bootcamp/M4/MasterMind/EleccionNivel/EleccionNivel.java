@@ -77,11 +77,10 @@ public class EleccionNivel extends JFrame {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
+
+	
 					frame.setVisible(false);
-				} catch (Exception ex) {
-					System.out.println(ex.getMessage());
-				}
+			
 
 			}
 
@@ -90,6 +89,6 @@ public class EleccionNivel extends JFrame {
 		btnCancelar.setBounds(189, 165, 89, 23);
 		panel.add(btnCancelar);
 
+	
 	}
-
 }
