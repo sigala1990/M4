@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 import com.bootcamp.M4.MasterMind.EleccionNivel.EleccionNivel;
@@ -24,7 +26,7 @@ public class JFrame extends javax.swing.JFrame implements ActionListener {
 	private JMenu archivo, ayuda;
 	private JMenuItem nuevoJuego, salir, nivel, comoJugar, acercaDe;
 	private JLabel lblMensajes;
-	private String instrucciones = "COMO SE JUEGA\nEn Mastermind compiten 2 jugadores, uno de ellos creará un código oculto con 5 clavijas de colores, pudiendo hacer las combinaciones con los 8 colores disponibles e incluso repitiendo color si lo desea. El código de colores debe de ocultarse con el escudo para que no pueda verlo el oponente, que deberá acertar en el menor número posible de jugadas la clave para obtener una buena puntuación. Para descifrar el código secreto de colores el jugador deberá ir probando combinaciones aleatorias de colores, y en cada combinación, el jugador contrario debe darle pistas mediante las espigas blancas y negras. Por cada clavija acertada en color y posición, colocará una espiga negra, y por cada color acertado pero en un lugar equivocado colocara una espiga blanca.";
+	private String instrucciones = "COMO SE JUEGA\n\nEn Mastermind compiten 2 jugadores, uno de \nellos creará un código oculto con 5 clavijas de \ncolores, pudiendo hacer las combinaciones con \nlos 8 colores disponibles e incluso repitiendo \ncolor si lo desea. El código de colores debe de \nocultarse con el escudo para que no pueda verlo \nel oponente, que deberá acertar en el menor \nnúmero posible de jugadas la clave para obtener \nuna buena puntuación. Para descifrar el código \nsecreto de colores el jugador deberá ir probando \ncombinaciones aleatorias de colores, y en cada \ncombinación, el jugador contrario debe darle \npistas mediante las espigas blancas y negras. \nPor cada clavija acertada en color y posición, \ncolocará una espiga negra, y por cada color \nacertado pero en un lugar equivocado colocará \nuna espiga blanca.";
 
 	/**
 	 * Launch the application.
@@ -84,7 +86,7 @@ public class JFrame extends javax.swing.JFrame implements ActionListener {
 		 */
 		comoJugar = new JMenuItem("Cómo Jugar");
 		ayuda.add(comoJugar);
-		nuevoJuego.addActionListener(this);
+		comoJugar.addActionListener(this);
 
 		acercaDe = new JMenuItem("Acerca De");
 		ayuda.add(acercaDe);
@@ -104,25 +106,36 @@ public class JFrame extends javax.swing.JFrame implements ActionListener {
 	/* Método que implementa las acciones de cada ítem de menú */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == nuevoJuego) {
-			getContentPane().setBackground(new Color(2, 0, 0));
+			// JuegoNuevo juegonuevo = new JuegoNuevo();
+			// juegoNuevo.setVisible(true);
 		}
 		if (e.getSource() == salir) {
 			System.exit(0);
-			//Salir del juego
+			// Salir del juego
 		}
 		if (e.getSource() == nivel) {
-			
+
 			EleccionNivel eleccionNivel = new EleccionNivel();
-			eleccionNivel.setVisible(true); //Abre una ventana para seleccionar nivel
+			eleccionNivel.setVisible(true); // Abre una ventana para seleccionar nivel
 
 		}
-		if (e.getSource() == comoJugar) {
-			lblMensajes.setText("Cómo se juega"); 
-			//Muestra las instrucciones
-		}
+		
 		if (e.getSource() == acercaDe) {
 			lblMensajes.setText("Desarrolladores: Adrià Queralt, Marc Padrell e Ixabel Justo");
-			//Muestra nuestros nombres
+			// Muestra nuestros nombres
 		}
+		
+		  // create a JTextArea
+	      JTextArea textArea = new JTextArea(6, 25);
+	      textArea.setText(instrucciones);
+	      textArea.setEditable(false);
+	      
+	      // wrap a scrollpane around it
+	      JScrollPane scrollPane = new JScrollPane(textArea);
+	      
+	      // display them in a message dialog
+	      JOptionPane.showMessageDialog(frame, scrollPane);
+		
+		
 	}
 }
