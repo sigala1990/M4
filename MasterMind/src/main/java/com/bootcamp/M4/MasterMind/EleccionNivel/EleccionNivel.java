@@ -89,9 +89,8 @@ public class EleccionNivel extends JFrame {
 					cantidadIntentos = 6;
 				}
 				MainJFrame jframe = new MainJFrame(cantidadColores, cantidadIntentos);
-				//	jframe.setCantidadColores(cantidadColores);
-					//jframe.setCantidadIntentos(cantidadIntentos);
-					jframe.setVisible(true);
+				jframe.setFrame(jframe);
+				jframe.setVisible(true);
 				
 					frame.setVisible(false);
 				// System.out.println(getCantidadColores());
@@ -108,8 +107,7 @@ public class EleccionNivel extends JFrame {
 
 				//MainJFrame.mainJFrameOpen();
 				MainJFrame jframe = new MainJFrame(cantidadColores, cantidadIntentos);
-			//	jframe.setCantidadColores(cantidadColores);
-				//jframe.setCantidadIntentos(cantidadIntentos);
+				jframe.setFrame(jframe);
 				jframe.setVisible(true);
 			
 				frame.setVisible(false);
@@ -140,12 +138,6 @@ public class EleccionNivel extends JFrame {
 		return cantidadIntentos;
 	}
 
-	public boolean isMainJframe() {
-		return mainJframeOpen;
-	}
 
-	public void setMainJframe(boolean mainJframeOpen) {
-		this.mainJframeOpen = mainJframeOpen;
-	}
 
 }
