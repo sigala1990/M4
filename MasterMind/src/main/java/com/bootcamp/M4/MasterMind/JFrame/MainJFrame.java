@@ -2,10 +2,13 @@ package com.bootcamp.M4.MasterMind.JFrame;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +27,9 @@ import javax.swing.border.EmptyBorder;
 
 import com.bootcamp.M4.MasterMind.ColoresDisponibles.ColoresDisponibles;
 import com.bootcamp.M4.MasterMind.EleccionNivel.EleccionNivel;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 	public EleccionNivel eleccionNivel;
@@ -44,39 +50,13 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 	private List<JButton> listBotonesNegro = new ArrayList<JButton>();
 	private List<JButton> listBotonesCheck = new ArrayList<JButton>();
 	private boolean win;
+	private boolean mostrarCombinacionSecreta;
 	private int cantidadColores, cantidadIntentos, cantidadIntentosContador;
 	private int incrementoPosicion = 0;
 	private int nombreBottonIntento = 0;
 	private int xIntento = 50;
 	private int yIntento = 50;
 	private JLabel lblLeftRight;
-
-	public void nuevoJuego() {
-		limpiezaListBotones(listBotonesColoresDisponibles);
-		limpiezaListBotones(listBotonesCombinacionSecreta);
-		limpiezaListBotones(listBotonesIntento);
-		limpiezaListBotones(listBotonesBlanco);
-		limpiezaListBotones(listBotonesNegro);
-		limpiezaListBotones(listBotonesCheck);
-		listColoresDisponibles.clear();
-		listCombinacionSecreta.clear();
-		listBotonesIntentPosicion.clear();
-
-		win = false;
-		incrementoPosicion = 0;
-		nombreBottonIntento = 0;
-		cantidadIntentosContador = 0;
-		yIntento = 50;
-		xIntento = 50;
-		lblLeftRight.setText("");
-
-		ColoresDisponibles coloresDisponibles = new ColoresDisponibles(cantidadColores);
-		rellenarListColoresDisponibles(coloresDisponibles.getArrayColor());
-		rellenarListaCombinacionSecreta();
-		crearBottonesListaColoresDisponibles();
-		crearBottonesCombinacionSecreta();
-		crearBottonesIntento();
-	}
 
 	/**
 	 * Launch the application.
@@ -154,6 +134,11 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		
+	
+	
+		
+		
 		lblLeftRight = new JLabel("");
 		lblLeftRight.setBounds(50, 30, 150, 20);
 		contentPane.add(lblLeftRight);
@@ -161,6 +146,14 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		crearBottonesListaColoresDisponibles();
 		crearBottonesCombinacionSecreta();
 		crearBottonesIntento();
+		//BufferedImage myPicture = ImageIO.read(new File("/MasterMind/src/main/java/com/bootcamp/M4/MasterMind/img/fondoMasterMind.png"));
+		JLabel picLabel = new JLabel(new ImageIcon(MainJFrame.class.getClassLoader().getResource("com/bootcamp/M4/MasterMind/img/fondoMasterMind.png")));
+		picLabel.setBounds(0, 0, 900, 500);
+		getContentPane().add(picLabel);	
+		//contentPane.setComponentZOrder(picLabel,0);
+		//contentPane.setComponentZOrder(btn, 1);//
+		picLabel.setLayout(new FlowLayout());
+		repaint();
 		// crearBottonesIntento();
 	}
 
@@ -241,18 +234,20 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 			});
 			contentPane.add(listBotonesIntento.get(i));
 			xIntento += 25;
-			repaint();
+			
 
 		}
-
+	
 		crearBottonComprobar();
 		// listBotonesIntento.clear();
 		// listBotonesIntentPosicion.clear();
 		xIntento = 50;
 		yIntento = (yIntento + 25);
+		repaint();
 	}
 
 	public void crearBottonComprobar() {
+		
 		JButton btnComprobarIntento = new JButton();
 		listBotonesCheck.add(btnComprobarIntento);
 		btnComprobarIntento.setText("Check");
@@ -295,15 +290,14 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 						}
 						xIntento = xIntento - (25 * comprobarColoresNegros());
 						if (win) {
-							// contentPane.setVisible(false);
 							JOptionPane.showMessageDialog(null, "¡¡VICTORIA!!");
 						}
-
+					
 						cantidadIntentosContador++;
 						incrementoPosicion = incrementoPosicion + cantidadColores;
 						crearBottonesIntento();
 						btnComprobarIntento.setVisible(false);
-
+						
 					} else {
 						JOptionPane.showMessageDialog(null, "GAME OVER");
 					}
@@ -333,7 +327,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 				}
 			}
 		});
-		btnInfo1.setBounds(251, 378, 89, 23);
+		btnInfo1.setBounds(251, 300, 89, 23);
 		contentPane.add(btnInfo1);
 
 		JButton btnInfo2 = new JButton("Info2");
@@ -343,9 +337,9 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 				System.out.println("negro" + comprobarColoresNegros());
 			}
 		});
-		btnInfo2.setBounds(356, 378, 89, 23);
+		btnInfo2.setBounds(356, 300, 89, 23);
 		contentPane.add(btnInfo2);
-
+		repaint();
 	}
 
 	public int comprobarColoresBlancos() {// devolvera int que son colores blancoi
@@ -362,6 +356,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 			}
 		}
 		// System.out.println(contadorBlanco);
+		repaint();
 		return contadorBlanco;
 	}
 
@@ -378,6 +373,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		if (contadorNegro == cantidadColores) {
 			win = true;
 		}
+		repaint();
 		return contadorNegro;
 	}
 
@@ -441,6 +437,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 
 		for (int i = 0; i < cantidadColores; i++) {
 			JButton btnCombinacionSecreta = new JButton();
+			btnCombinacionSecreta.setVisible(false);
 			listBotonesCombinacionSecreta.add(btnCombinacionSecreta);
 			listBotonesCombinacionSecreta.get(i).setBounds(x, y, 20, 20);
 			listBotonesCombinacionSecreta.get(i).setEnabled(false);
@@ -448,8 +445,26 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 			contentPane.add(listBotonesCombinacionSecreta.get(i));
 			x += 25;
 		}
+		JButton btnPista = new JButton();
+		btnPista.setIcon(new ImageIcon(MainJFrame.class.getResource("/javax/swing/plaf/metal/icons/Question.gif")));
+		btnPista.setBounds(x+30,y-20,40,40);
+		btnPista.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				mostrarCombinacionSecreta();
+			}
+		});
+		contentPane.add(btnPista);
 	}
-
+	public void mostrarCombinacionSecreta() {
+		for (int i = 0; i < listBotonesCombinacionSecreta.size(); i++) {
+			listBotonesCombinacionSecreta.get(i).setVisible(!mostrarCombinacionSecreta);
+		}
+		mostrarCombinacionSecreta = !mostrarCombinacionSecreta;
+	}
+	
 	public void rellenarListColoresDisponibles(List<String> listColoresDisponibles) {/// OJO con el this, son variables
 																						/// distintas
 		for (int i = 0; i < listColoresDisponibles.size(); i++) {
@@ -499,6 +514,33 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		eleccionNivel.setFrame(eleccionNivel);
 		eleccionNivel.setVisible(true);
 		frame.setVisible(false);
+	}
+
+	public void nuevoJuego() {
+		limpiezaListBotones(listBotonesColoresDisponibles);
+		limpiezaListBotones(listBotonesCombinacionSecreta);
+		limpiezaListBotones(listBotonesIntento);
+		limpiezaListBotones(listBotonesBlanco);
+		limpiezaListBotones(listBotonesNegro);
+		limpiezaListBotones(listBotonesCheck);
+		listColoresDisponibles.clear();
+		listCombinacionSecreta.clear();
+		listBotonesIntentPosicion.clear();
+	
+		win = false;
+		incrementoPosicion = 0;
+		nombreBottonIntento = 0;
+		cantidadIntentosContador = 0;
+		yIntento = 50;
+		xIntento = 50;
+		lblLeftRight.setText("");
+	
+		ColoresDisponibles coloresDisponibles = new ColoresDisponibles(cantidadColores);
+		rellenarListColoresDisponibles(coloresDisponibles.getArrayColor());
+		rellenarListaCombinacionSecreta();
+		crearBottonesListaColoresDisponibles();
+		crearBottonesCombinacionSecreta();
+		crearBottonesIntento();
 	}
 
 	public int getCantidadColores() {
