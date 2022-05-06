@@ -252,15 +252,8 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 				}
 				if (noEsWhite) {//control todos los colores seleccionados
 
-					for (int i = 0; i < comprobarColoresBlancos(); i++) {
-						JButton btn = new JButton();
-						btn.setBackground(Color.white);
-						btn.setEnabled(false);
-						contentPane.add(btn);
-						btn.setBounds((xIntento + 250), yIntento - 20, 20, 20);
-						xIntento += 25;
-					}
-					xIntento = xIntento - (25 * comprobarColoresBlancos());
+				
+					
 					for (int i = 0; i < comprobarColoresNegros(); i++) {
 						JButton btn = new JButton();
 						btn.setEnabled(false);
@@ -271,17 +264,27 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 					}
 					xIntento = xIntento - (25 * comprobarColoresNegros());
 					btnComprobarIntento.setVisible(false);
-					// e.getSource()
 				
-					incrementoPosicion = incrementoPosicion + cantidadColores;
-					crearBottonesIntento();
+				
+					
 				
 				} else {
 					JOptionPane.showMessageDialog(null, "Debes poner todos los colores");
 				}*/
 				if(cantidadIntentos > cantidadIntentosContador) {
+					
+					for (int i = 0; i < comprobarColoresBlancos(); i++) {
+						JButton btn = new JButton();
+						btn.setBackground(Color.white);
+						btn.setEnabled(false);
+						contentPane.add(btn);
+						btn.setBounds((xIntento + 250), yIntento - 20, 20, 20);
+						xIntento += 25;
+					}
+					xIntento = xIntento - (25 * comprobarColoresBlancos());
+					
 					cantidadIntentosContador++;
-					incrementoPosicion = incrementoPosicion + (cantidadColores);
+					incrementoPosicion = incrementoPosicion + cantidadColores;
 					crearBottonesIntento();
 					btnComprobarIntento.setVisible(false);
 					
@@ -313,6 +316,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		JButton btnInfo2 = new JButton("Info2");
 		btnInfo2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				comprobarColoresBlancos();
 			}
 		});
 		btnInfo2.setBounds(356, 378, 89, 23);
@@ -333,7 +337,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 				}
 			}
 		}
-		// System.out.println(contadorBlanco);
+		 System.out.println(contadorBlanco);
 		return contadorBlanco;
 	}
 
