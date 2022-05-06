@@ -27,8 +27,7 @@ import com.bootcamp.M4.MasterMind.EleccionNivel.EleccionNivel;
 public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 	private static MainJFrame frame;
 	private int cantidadColores, cantidadIntentos, cantidadIntentosContador;
-	private int posicioColorBotonIntento1, posicioColorBotonIntento2, posicioColorBotonIntento3,
-			posicioColorBotonIntento4;
+	private int incrementoPosicion = 0;
 	private JPanel contentPane;
 	private JMenuBar menuBar;
 	private JMenu archivo, ayuda;
@@ -43,6 +42,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 	private List<Color> listCombinacionSecreta = new ArrayList<Color>();
 	private List<JButton> listBotonesIntento = new ArrayList<JButton>();
 	private List<Integer> listBotonesIntentPosicion = new ArrayList<Integer>();
+
 	private int nombreBottonIntento = 0;
 	private JLabel lbl;
 
@@ -132,7 +132,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		crearBottonesListaColoresDisponibles();
 		crearBottonesCombinacionSecreta();
 		crearBottonesIntento();
-		 crearBottonesIntento();
+		// crearBottonesIntento();
 	}
 
 	/* Método que implementa las acciones de cada ítem de menú */
@@ -175,12 +175,13 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 
 	public void crearBottonesIntento() {
 
-		for (int i = 0; i < cantidadColores; i++) {
+		for (int i = incrementoPosicion; i < incrementoPosicion+cantidadColores; i++) {
 			JButton btnIntento = new JButton();
 			listBotonesIntento.add(btnIntento);
-			listBotonesIntentPosicion.add(0);
+			listBotonesIntentPosicion.add(0);//lista que sirve para validarlo
 			listBotonesIntento.get(i).setBackground(Color.white);
 			listBotonesIntento.get(i).setName("" + nombreBottonIntento);
+			nombreBottonIntento++;
 			listBotonesIntento.get(i).setBounds(xIntento, yIntento, 20, 20);
 
 			listBotonesIntento.get(i).addMouseListener(new MouseListener() {
@@ -224,14 +225,15 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 			});
 			contentPane.add(listBotonesIntento.get(i));
 			xIntento += 25;
-
-			nombreBottonIntento++;
+			repaint();
+		
 		}
+
 		crearBottonComprobar();
 		// listBotonesIntento.clear();
 		// listBotonesIntentPosicion.clear();
 		xIntento = 50;
-		yIntento = (yIntento + 20);
+		yIntento = (yIntento + 25);
 	}
 
 	public void crearBottonComprobar() {
@@ -241,13 +243,12 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		btnComprobarIntento.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Control de intentos
+			/*	// Control de intentos
 				boolean noEsWhite = true;
 				for (int i = 0; i < listBotonesIntento.size(); i++) {
 					if (listBotonesIntento.get(i).getBackground() == Color.white) {
 						noEsWhite = false;
 					}
-
 				}
 				if (noEsWhite) {//control todos los colores seleccionados
 
@@ -268,15 +269,54 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 						btn.setBounds((xIntento + 250), yIntento - 20, 20, 20);
 						xIntento += 25;
 					}
+					xIntento = xIntento - (25 * comprobarColoresNegros());
 					btnComprobarIntento.setVisible(false);
 					// e.getSource()
+				
+					incrementoPosicion = incrementoPosicion + cantidadColores;
 					crearBottonesIntento();
+				
 				} else {
 					JOptionPane.showMessageDialog(null, "Debes poner todos los colores");
+				}*/
+				if(cantidadIntentos > cantidadIntentosContador) {
+					cantidadIntentosContador++;
+					incrementoPosicion = incrementoPosicion + (cantidadColores);
+					crearBottonesIntento();
+					btnComprobarIntento.setVisible(false);
+					
+				}else {
+					JOptionPane.showMessageDialog(null, "GAME OVER");
 				}
+	
 			}
 		});
+
 		contentPane.add(btnComprobarIntento);
+		
+		JButton btnInfo1 = new JButton("Info1");
+		btnInfo1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("________________INTENTO"+cantidadIntentosContador+"____________________");
+				for (int i = 0; i < listBotonesIntento.size(); i++) {
+					System.out.print(listBotonesIntento.get(i).getName()+"\t");
+				}
+				System.out.println("\nIncremento posicion = "+incrementoPosicion+ "CantidadColores = "+cantidadColores);
+				System.out.println("\nx"+xIntento+ " \ty"+yIntento+"\n"
+						+ "CantidadIntentos = "+ cantidadIntentos+ " cantidadIntentosContador = "+ cantidadIntentosContador );
+				System.out.println("_________________________________________________________________________");
+			}
+		});
+		btnInfo1.setBounds(251, 378, 89, 23);
+		contentPane.add(btnInfo1);
+		
+		JButton btnInfo2 = new JButton("Info2");
+		btnInfo2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnInfo2.setBounds(356, 378, 89, 23);
+		contentPane.add(btnInfo2);
 
 	}
 
@@ -286,8 +326,8 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		for (int i = 0; i < listCombinacionSecreta.size(); i++) {// comprobarmos que el colore sea correcto en cualquier
 																	// posicion
 			encontrado = false;
-			for (int j = 0; j < listCombinacionSecreta.size(); j++) {
-				if (listCombinacionSecreta.get(i) == listBotonesIntento.get(j).getBackground() && encontrado == false) {
+			for (int j = incrementoPosicion; j < incrementoPosicion+listCombinacionSecreta.size(); j++) {
+				if (listCombinacionSecreta.get(i) == listBotonesIntento.get(incrementoPosicion).getBackground() && encontrado == false) {
 					contadorBlanco++;
 					encontrado = true;
 				}
@@ -299,8 +339,8 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 
 	public int comprobarColoresNegros() {// devolvera int que son colores negros
 		int contadorNegro = 0;
-		for (int i = 0; i < listCombinacionSecreta.size(); i++) {// comprobar
-			if (listBotonesIntento.get(i).getBackground() == listCombinacionSecreta.get(i)) {
+		for (int i = incrementoPosicion; i < incrementoPosicion+listCombinacionSecreta.size(); i++) {// comprobar
+			if (listBotonesIntento.get(incrementoPosicion).getBackground() == listCombinacionSecreta.get(i)) {
 				contadorNegro++;
 			}
 
@@ -435,4 +475,22 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 	public static int numRandom(int min, int max) { // metodo devuelve num random
 		return (int) (Math.random() * (max - min) + min);
 	}
+
+	@Override
+	public String toString() {
+		return "MainJFrame [cantidadColores=" + cantidadColores + ", cantidadIntentos=" + cantidadIntentos
+				+ ", cantidadIntentosContador=" + cantidadIntentosContador + ", incrementoPosicion="
+				+ incrementoPosicion + ", contentPane=" + contentPane + ", menuBar=" + menuBar + ", archivo=" + archivo
+				+ ", ayuda=" + ayuda + ", nuevoJuego=" + nuevoJuego + ", salir=" + salir + ", nivel=" + nivel
+				+ ", comoJugar=" + comoJugar + ", acercaDe=" + acercaDe + ", eleccionNivel=" + eleccionNivel
+				+ ", instrucciones=" + instrucciones + ", lblNewLabel=" + lblNewLabel + ", btnNewButton=" + btnNewButton
+				+ ", listBotonesColoresDisponibles=" + listBotonesColoresDisponibles + ", listColoresDisponibles="
+				+ listColoresDisponibles + ", listBotonesCombinacionSecreta=" + listBotonesCombinacionSecreta
+				+ ", listCombinacionSecreta=" + listCombinacionSecreta + ", listBotonesIntento=" + listBotonesIntento
+				+ ", listBotonesIntentPosicion=" + listBotonesIntentPosicion + ", nombreBottonIntento="
+				+ nombreBottonIntento + ", lbl=" + lbl + ", xIntento=" + xIntento + ", yIntento=" + yIntento
+				+ ", lblNewLabel_1=" + lblNewLabel_1 + "]";
+	}
+	
+	
 }
