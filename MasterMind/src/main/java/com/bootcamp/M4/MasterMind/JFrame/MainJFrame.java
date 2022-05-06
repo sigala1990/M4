@@ -132,7 +132,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		crearBottonesListaColoresDisponibles();
 		crearBottonesCombinacionSecreta();
 		crearBottonesIntento();
-		// crearBottonesIntento();
+		 crearBottonesIntento();
 	}
 
 	/* Método que implementa las acciones de cada ítem de menú */
@@ -179,7 +179,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 			JButton btnIntento = new JButton();
 			listBotonesIntento.add(btnIntento);
 			listBotonesIntentPosicion.add(0);
-			listBotonesIntento.get(i).setBackground(Color.magenta);
+			listBotonesIntento.get(i).setBackground(Color.white);
 			listBotonesIntento.get(i).setName("" + nombreBottonIntento);
 			listBotonesIntento.get(i).setBounds(xIntento, yIntento, 20, 20);
 
@@ -242,14 +242,14 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Control de intentos
-				boolean noEsMagenta = true;
+				boolean noEsWhite = true;
 				for (int i = 0; i < listBotonesIntento.size(); i++) {
-					if (listBotonesIntento.get(i).getBackground() == Color.magenta) {
-						noEsMagenta = false;
+					if (listBotonesIntento.get(i).getBackground() == Color.white) {
+						noEsWhite = false;
 					}
 
 				}
-				if (noEsMagenta) {//control todos los colores seleccionados
+				if (noEsWhite) {//control todos los colores seleccionados
 
 					for (int i = 0; i < comprobarColoresBlancos(); i++) {
 						JButton btn = new JButton();
@@ -386,8 +386,8 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 			case "yellow":
 				this.listColoresDisponibles.add(Color.yellow);
 				break;
-			case "white":
-				this.listColoresDisponibles.add(Color.white);
+			case "magenta":
+				this.listColoresDisponibles.add(Color.magenta);
 				break;
 			case "blue":
 				this.listColoresDisponibles.add(Color.blue);
