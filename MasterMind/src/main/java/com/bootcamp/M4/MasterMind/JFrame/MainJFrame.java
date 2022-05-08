@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -110,7 +111,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		 */
 		cambiarPalette = new JMenuItem("Cambiar colores");
 		palette.add(cambiarPalette);
-		palette.setVisible(true);
+		palette.setVisible(false);
 		cambiarPalette.addActionListener(this);
 		/*
 		 * Creamos los objetos de la clase JMenuItem y los asociamos con el JMenu
@@ -389,6 +390,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		// System.out.println(contadorNegro);
 		if (contadorNegro == numeroBottonesAMostrar) {
 			win = true;
+			palette.setVisible(true);
 		}
 		repaint();
 		return contadorNegro;
@@ -584,6 +586,10 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		crearBottonesCombinacionSecreta();
 		crearBottonesIntento();
 	}
+	public void necesarioNuevoJuego() {
+		
+	}
+	
 	public void actualizarColoresDisponibles() {
 		ColoresDisponibles coloresDisponibles = new ColoresDisponibles(cantidadColores);
 		rellenarListColoresDisponibles(coloresDisponibles.getArrayColor());
