@@ -152,10 +152,9 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		crearBottonesCombinacionSecreta();
 		crearBottonesIntento();
 		//JLabel picLabel = new JLabel(new ImageIcon(MainJFrame.class.getClassLoader().getResource("com/bootcamp/M4/MasterMind/img/fondoMasterMind.png")));
-		JLabel picLabel = new JLabel(new ImageIcon(MainJFrame.class.getClassLoader().getResource("com/bootcamp/M4/MasterMind/img/fototest.jpg")));
-		picLabel.setBounds(0, 0, 900, 500);
-		getContentPane().add(picLabel);	
-		picLabel.setLayout(new FlowLayout());
+		//picLabel.setBounds(0, 0, 900, 500);
+		//getContentPane().add(picLabel);	
+		//picLabel.setLayout(new FlowLayout());
 	
 	}
 
@@ -197,7 +196,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 	}
 
 	public void crearBottonesIntento() {
-		for (int i = incrementoPosicion; i < incrementoPosicion + cantidadColores; i++) {
+		for (int i = incrementoPosicion; i < incrementoPosicion + numeroBottonesAMostrar; i++) {
 			JButton btnIntento = new JButton();
 			listBotonesIntento.add(btnIntento);
 			listBotonesIntentPosicion.add(0);// lista que sirve para validarlo
@@ -312,7 +311,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 						}else {
 						
 						cantidadIntentosContador++;
-						incrementoPosicion = incrementoPosicion + cantidadColores;
+						incrementoPosicion = incrementoPosicion + numeroBottonesAMostrar;
 						crearBottonesIntento();
 						btnComprobarIntento.setVisible(false);
 						}
@@ -388,7 +387,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 			contadorI++;
 		}
 		// System.out.println(contadorNegro);
-		if (contadorNegro == cantidadColores) {
+		if (contadorNegro == numeroBottonesAMostrar) {
 			win = true;
 		}
 		repaint();
@@ -453,7 +452,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		lbl_CombinacionSecreta.setBounds((x - 40), (y - 40), 150, 50);
 		contentPane.add(lbl_CombinacionSecreta);
 
-		for (int i = 0; i < cantidadColores; i++) {
+		for (int i = 0; i < numeroBottonesAMostrar; i++) {
 			JButton btnCombinacionSecreta = new JButton();
 			btnCombinacionSecreta.setVisible(false);
 			listBotonesCombinacionSecreta.add(btnCombinacionSecreta);
@@ -514,7 +513,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 	}
 
 	public void rellenarListaCombinacionSecreta() {
-		for (int i = 0; i < listColoresDisponibles.size(); i++) {
+		for (int i = 0; i < numeroBottonesAMostrar; i++) {
 			int posicionRandom = numRandom(0, listColoresDisponibles.size());
 			listCombinacionSecreta.add(listColoresDisponibles.get(posicionRandom));
 		}
