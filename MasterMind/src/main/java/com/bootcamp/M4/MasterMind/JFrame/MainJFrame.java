@@ -146,15 +146,11 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		crearBottonesListaColoresDisponibles();
 		crearBottonesCombinacionSecreta();
 		crearBottonesIntento();
-		//BufferedImage myPicture = ImageIO.read(new File("/MasterMind/src/main/java/com/bootcamp/M4/MasterMind/img/fondoMasterMind.png"));
-		JLabel picLabel = new JLabel(new ImageIcon(MainJFrame.class.getClassLoader().getResource("com/bootcamp/M4/MasterMind/img/fondoMasterMind.png")));
-		picLabel.setBounds(0, 0, 900, 500);
-		getContentPane().add(picLabel);	
-		//contentPane.setComponentZOrder(picLabel,0);
-		//contentPane.setComponentZOrder(btn, 1);//
-		picLabel.setLayout(new FlowLayout());
-		repaint();
-		// crearBottonesIntento();
+		//JLabel picLabel = new JLabel(new ImageIcon(MainJFrame.class.getClassLoader().getResource("com/bootcamp/M4/MasterMind/img/fondoMasterMind.png")));
+		//picLabel.setBounds(0, 0, 900, 500);
+		//getContentPane().add(picLabel);	
+		//picLabel.setLayout(new FlowLayout());
+	
 	}
 
 	/* Método que implementa las acciones de cada ítem de menú */
@@ -446,7 +442,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 			x += 25;
 		}
 		JButton btnPista = new JButton();
-		btnPista.setIcon(new ImageIcon(MainJFrame.class.getResource("/javax/swing/plaf/metal/icons/Question.gif")));
+		btnPista.setIcon(new ImageIcon(MainJFrame.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-information.png")));
 		btnPista.setBounds(x+30,y-20,40,40);
 		btnPista.addActionListener(new ActionListener() {
 			
