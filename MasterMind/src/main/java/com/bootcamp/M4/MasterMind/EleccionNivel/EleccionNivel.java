@@ -20,9 +20,8 @@ public class EleccionNivel extends JFrame {
 	private JPanel contentPane;
 	private JButton btnCancelar;
 
-	/**
-	 * Launch the application.
-	 */
+	// Lanzar la aplicación
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -36,9 +35,8 @@ public class EleccionNivel extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	//Crear el frame
+	
 	public EleccionNivel() {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -47,42 +45,48 @@ public class EleccionNivel extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
+		//Crear y definir el panel
 		JPanel panel = new JPanel();
 		panel.setBounds(24, 11, 400, 239);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
+		//Botones para escoger el nivel
+		
+		//Botón nivel Principiante
 		JRadioButton rdbtnNivelPrincipiante = new JRadioButton("Principiante");
 		rdbtnNivelPrincipiante.setBounds(141, 66, 109, 23);
 		panel.add(rdbtnNivelPrincipiante);
 
+		
+		//Botón nivel Medio
 		JRadioButton rdbtnNivelMedio = new JRadioButton("Medio");
 		rdbtnNivelMedio.setBounds(141, 94, 109, 23);
 		panel.add(rdbtnNivelMedio);
 		rdbtnNivelMedio.setSelected(true);
 
+		
+		//Botón nivel Avanzado
 		JRadioButton rdbtnNivelAvanzado = new JRadioButton("Avanzado");
 		rdbtnNivelAvanzado.setBounds(141, 120, 109, 23);
 		panel.add(rdbtnNivelAvanzado);
 
+		//Botón para aceptar cuando hayas escogido el nivel
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.setBounds(91, 165, 89, 23);
 		panel.add(btnAceptar);
 
+		//Botón para cancelar
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				//frame = new EleccionNivel();
 				if(frame != null) {
 					frame.setVisible(false);
 				}			
 			}
 		});
-		// panel.close();
-		// JEleccionNivel.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-		// JEleccionNivel.setVisible(false);
-
+		
 		btnCancelar.setBounds(189, 165, 89, 23);
 		panel.add(btnCancelar);
 

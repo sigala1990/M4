@@ -30,9 +30,8 @@ public class JFrame extends javax.swing.JFrame implements ActionListener {
 
 	private String instrucciones = "COMO SE JUEGA\n\nEn Mastermind compiten 2 jugadores, uno de \nellos creará un código oculto con 5 clavijas de \ncolores, pudiendo hacer las combinaciones con \nlos 8 colores disponibles e incluso repitiendo \ncolor si lo desea. El código de colores debe de \nocultarse con el escudo para que no pueda verlo \nel oponente, que deberá acertar en el menor \nnúmero posible de jugadas la clave para obtener \nuna buena puntuación. Para descifrar el código \nsecreto de colores el jugador deberá ir probando \ncombinaciones aleatorias de colores, y en cada \ncombinación, el jugador contrario debe darle \npistas mediante las espigas blancas y negras. \nPor cada clavija acertada en color y posición, \ncolocará una espiga negra, y por cada color \nacertado pero en un lugar equivocado colocará \nuna espiga blanca.";
 
-	/**
-	 * Launch the application.
-	 */
+	//Lanzar la aplicación
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -46,14 +45,13 @@ public class JFrame extends javax.swing.JFrame implements ActionListener {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	//Crear el Frame
+	
 	public JFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 
-		/* Creamos el JMenuBar y lo asociamos con el JFrame */
+		// Creamos el JMenuBar y lo asociamos con el JFrame
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
@@ -125,15 +123,15 @@ public class JFrame extends javax.swing.JFrame implements ActionListener {
 
 		if (e.getSource() == comoJugar) {
 
-			// create a JTextArea
+			// crear un JTextArea
 			JTextArea textArea = new JTextArea(6, 25);
 			textArea.setText(instrucciones);
 			textArea.setEditable(false);
 
-			// wrap a scrollpane around it
+			//Añadir un scroll
 			JScrollPane scrollPane = new JScrollPane(textArea);
 
-			// display them in a message dialog
+			// Añadir un MessageDialog
 			JOptionPane.showMessageDialog(frame, scrollPane);
 		}
 	}
