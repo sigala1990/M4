@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.SystemColor;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -52,6 +53,7 @@ public class EleccionNivel extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 350, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -61,17 +63,20 @@ public class EleccionNivel extends JFrame {
 		ButtonGroup nivelesDificultad = new ButtonGroup();
 
 		JRadioButton rdbtnNivelPrincipiante = new JRadioButton("Principiante");
+		rdbtnNivelPrincipiante.setBackground(SystemColor.activeCaption);
 		
 		rdbtnNivelPrincipiante.setBounds(120, 66, 109, 23);
 		contentPane.add(rdbtnNivelPrincipiante);
 
 		JRadioButton rdbtnNivelMedio = new JRadioButton("Medio");
+		rdbtnNivelMedio.setBackground(SystemColor.activeCaption);
 		rdbtnNivelMedio.setBounds(120, 94, 109, 23);
 		
 		contentPane.add(rdbtnNivelMedio);
 		rdbtnNivelMedio.setSelected(true);
 
 		JRadioButton rdbtnNivelAvanzado = new JRadioButton("Avanzado");
+		rdbtnNivelAvanzado.setBackground(SystemColor.activeCaption);
 		rdbtnNivelAvanzado.setBounds(120, 120, 109, 23);
 		contentPane.add(rdbtnNivelAvanzado);
 

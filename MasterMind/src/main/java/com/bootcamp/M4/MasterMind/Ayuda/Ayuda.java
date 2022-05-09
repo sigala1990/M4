@@ -11,6 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.bootcamp.M4.MasterMind.JFrame.MainJFrame;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Ayuda extends JFrame {
 
@@ -74,10 +77,20 @@ public class Ayuda extends JFrame {
 		lblahorcado.setBounds(129, 354, 195, 47);
 		contentPane.add(lblahorcado);
 		
+		JButton btn_volver = new JButton("Volver");
+		btn_volver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+			}
+		});
+		btn_volver.setBounds(161, 494, 89, 23);
+		contentPane.add(btn_volver);
+		
 		JLabel picLabel = new JLabel(new ImageIcon(MainJFrame.class.getClassLoader().getResource("com/bootcamp/M4/MasterMind/img/AyudaBackground.png")));
 		picLabel.setBounds(0, 0, 700, 650);
 		contentPane.add(picLabel);	
 		picLabel.setLayout(new FlowLayout());
+
 		
 	
 		

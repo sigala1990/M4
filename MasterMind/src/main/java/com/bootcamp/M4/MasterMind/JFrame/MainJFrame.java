@@ -2,7 +2,7 @@ package com.bootcamp.M4.MasterMind.JFrame;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.bootcamp.M4.MasterMind.AcercaDe.AcercaDe;
 import com.bootcamp.M4.MasterMind.Ayuda.Ayuda;
 import com.bootcamp.M4.MasterMind.ColoresDisponibles.ColoresDisponibles;
 import com.bootcamp.M4.MasterMind.EleccionNivel.EleccionNivel;
@@ -140,6 +141,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		acercaDe.addActionListener(this);
 
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -177,8 +179,10 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		}
 
 		if (e.getSource() == acercaDe) {
-			JOptionPane.showMessageDialog(null, "Desarrolladores: Adrià Queralt, Marc Padrell e Ixabel Justo");
+		//	JOptionPane.showMessageDialog(null, "Desarrolladores: Adrià Queralt, Marc Padrell e Ixabel Justo");
 			// Muestra nuestros nombres
+			AcercaDe acercaDe = new AcercaDe();
+			acercaDe.setVisible(true);
 		}
 
 		if (e.getSource() == comoJugar) {
@@ -568,6 +572,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		listBotonesIntentPosicion.clear();
 	
 		win = false;
+		mostrarCombinacionSecreta = false;
 		incrementoPosicion = 0;
 		nombreBottonIntento = 0;
 		cantidadIntentosContador = 0;
