@@ -23,7 +23,7 @@ public class ColoresDisponibles {
 		listaColores.add(Color.pink);*/
 		
 		listaColores.add("yellow");
-		listaColores.add("magenta");
+		listaColores.add("white");
 		listaColores.add("blue");
 		listaColores.add("red");
 		listaColores.add("green");
@@ -75,7 +75,7 @@ public class ColoresDisponibles {
 		case 4:
 			return "green";
 		case 5:
-			return "magenta";
+			return "white";
 		default:
 			return null;			
 		}
