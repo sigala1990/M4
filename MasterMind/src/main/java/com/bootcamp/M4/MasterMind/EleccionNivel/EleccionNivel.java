@@ -26,7 +26,7 @@ public class EleccionNivel extends JFrame {
 	private boolean mainJframeOpen = false;
 
 	// Lanzar la aplicación
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -40,8 +40,8 @@ public class EleccionNivel extends JFrame {
 		});
 	}
 
-	//Crear el frame
-	
+	// Crear el frame
+
 	public EleccionNivel() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -56,14 +56,12 @@ public class EleccionNivel extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-<<<<<<< HEAD
 		//Botones para escoger el nivel
 		
 		//Botón nivel Principiante
-=======
+
 		ButtonGroup nivelesDificultad = new ButtonGroup();
 
->>>>>>> branch 'development' of https://github.com/sigala1990/M4.git
 		JRadioButton rdbtnNivelPrincipiante = new JRadioButton("Principiante");
 		rdbtnNivelPrincipiante.setBounds(141, 66, 109, 23);
 		panel.add(rdbtnNivelPrincipiante);
@@ -81,14 +79,13 @@ public class EleccionNivel extends JFrame {
 		rdbtnNivelAvanzado.setBounds(141, 120, 109, 23);
 		panel.add(rdbtnNivelAvanzado);
 
-<<<<<<< HEAD
+
 		//Botón para aceptar cuando hayas escogido el nivel
-=======
+
 		nivelesDificultad.add(rdbtnNivelPrincipiante);
 		nivelesDificultad.add(rdbtnNivelMedio);
 		nivelesDificultad.add(rdbtnNivelAvanzado);
 
->>>>>>> branch 'development' of https://github.com/sigala1990/M4.git
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -114,35 +111,26 @@ public class EleccionNivel extends JFrame {
 		btnAceptar.setBounds(91, 165, 89, 23);
 		panel.add(btnAceptar);
 
-<<<<<<< HEAD
 		//Botón para cancelar
-		btnCancelar = new JButton("Cancelar");
-=======
 		JButton btnCancelar = new JButton("Cancelar");
->>>>>>> branch 'development' of https://github.com/sigala1990/M4.git
+
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-<<<<<<< HEAD
+
 				if(frame != null) {
 					frame.setVisible(false);
 				}			
-=======
-				//MainJFrame.mainJFrameOpen();
+
 				MainJFrame jframe = new MainJFrame(cantidadColores, cantidadIntentos);
 				jframe.setFrame(jframe);
 				jframe.setVisible(true);
 			
 				frame.setVisible(false);
->>>>>>> branch 'development' of https://github.com/sigala1990/M4.git
 			}
 
 		});
-<<<<<<< HEAD
-		
-=======
 
->>>>>>> branch 'development' of https://github.com/sigala1990/M4.git
 		btnCancelar.setBounds(189, 165, 89, 23);
 		panel.add(btnCancelar);
 
@@ -165,7 +153,5 @@ public class EleccionNivel extends JFrame {
 
 		return cantidadIntentos;
 	}
-
-
 
 }
