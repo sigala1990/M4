@@ -2,34 +2,30 @@ package com.bootcamp.M4.MasterMind.JFrame;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import com.bootcamp.M4.MasterMind.AcercaDe.AcercaDe;
+import com.bootcamp.M4.MasterMind.Ayuda.Ayuda;
 import com.bootcamp.M4.MasterMind.ColoresDisponibles.ColoresDisponibles;
 import com.bootcamp.M4.MasterMind.EleccionNivel.EleccionNivel;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+import com.bootcamp.M4.MasterMind.Palette.Palette;
 
 public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 	public EleccionNivel eleccionNivel;
@@ -37,9 +33,9 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 	private static MainJFrame frame;
 	private JPanel contentPane;
 	private JMenuBar menuBar;
-	private JMenu archivo, ayuda;
-	private JMenuItem nuevoJuego, salir, nivel, comoJugar, acercaDe;
-	private String instrucciones = "COMO SE JUEGA\n\nEn Mastermind compiten 2 jugadores, uno de \nellos creará un código oculto con 5 clavijas de \ncolores, pudiendo hacer las combinaciones con \nlos 8 colores disponibles e incluso repitiendo \ncolor si lo desea. El código de colores debe de \nocultarse con el escudo para que no pueda verlo \nel oponente, que deberá acertar en el menor \nnúmero posible de jugadas la clave para obtener \nuna buena puntuación. Para descifrar el código \nsecreto de colores el jugador deberá ir probando \ncombinaciones aleatorias de colores, y en cada \ncombinación, el jugador contrario debe darle \npistas mediante las espigas blancas y negras. \nPor cada clavija acertada en color y posición, \ncolocará una espiga negra, y por cada color \nacertado pero en un lugar equivocado colocará \nuna espiga blanca.";
+	private JMenu archivo, ayuda, palette;
+	private JMenuItem nuevoJuego, salir, nivel, comoJugar, acercaDe, cambiarPalette;
+	//private String instrucciones = "COMO SE JUEGA\n\nEn Mastermind compiten 2 jugadores, uno de \nellos creará un código oculto con 5 clavijas de \ncolores, pudiendo hacer las combinaciones con \nlos 8 colores disponibles e incluso repitiendo \ncolor si lo desea. El código de colores debe de \nocultarse con el escudo para que no pueda verlo \nel oponente, que deberá acertar en el menor \nnúmero posible de jugadas la clave para obtener \nuna buena puntuación. Para descifrar el código \nsecreto de colores el jugador deberá ir probando \ncombinaciones aleatorias de colores, y en cada \ncombinación, el jugador contrario debe darle \npistas mediante las espigas blancas y negras. \nPor cada clavija acertada en color y posición, \ncolocará una espiga negra, y por cada color \nacertado pero en un lugar equivocado colocará \nuna espiga blanca.";
 	private List<JButton> listBotonesColoresDisponibles = new ArrayList<JButton>();
 	private List<Color> listColoresDisponibles = new ArrayList<Color>();
 	private List<JButton> listBotonesCombinacionSecreta = new ArrayList<JButton>();
@@ -50,7 +46,9 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 	private List<JButton> listBotonesNegro = new ArrayList<JButton>();
 	private List<JButton> listBotonesCheck = new ArrayList<JButton>();
 	private boolean win;
+	private boolean desbloquearPalette;
 	private boolean mostrarCombinacionSecreta;
+	private int numeroBottonesAMostrar = 4;
 	private int cantidadColores, cantidadIntentos, cantidadIntentosContador;
 	private int incrementoPosicion = 0;
 	private int nombreBottonIntento = 0;
@@ -74,10 +72,13 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		});
 	}
 
+
+
 	/**
 	 * Create the frame.
 	 */
 	public MainJFrame(int cantidadColores, int cantidadIntentos) {
+		setTitle("MasterMind");
 		this.cantidadColores = cantidadColores;
 		this.cantidadIntentos = cantidadIntentos;
 		win = false;
@@ -99,9 +100,19 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		archivo = new JMenu("Archivo");
 		menuBar.add(archivo);
 
+		palette = new JMenu("Palette");
+		menuBar.add(palette);
+		
 		ayuda = new JMenu("Ayuda");
 		menuBar.add(ayuda);
-
+		/*
+		 * Creamos los objetos de la clase JMenuPalette y los asociamos con el JMenu
+		 * Palette
+		 */
+		cambiarPalette = new JMenuItem("Cambiar colores");
+		palette.add(cambiarPalette);
+		palette.setVisible(false);
+		cambiarPalette.addActionListener(this);
 		/*
 		 * Creamos los objetos de la clase JMenuItem y los asociamos con el JMenu
 		 * Archivo
@@ -130,14 +141,10 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		acercaDe.addActionListener(this);
 
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		
-	
-	
-		
 		
 		lblLeftRight = new JLabel("");
 		lblLeftRight.setBounds(50, 30, 150, 20);
@@ -155,6 +162,11 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 
 	/* Método que implementa las acciones de cada ítem de menú */
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == cambiarPalette) {
+			Palette palette = new Palette(listColoresDisponibles, cantidadColores,this);
+			palette.setVisible(true);
+		}
+		
 		if (e.getSource() == nuevoJuego) {
 			nuevoJuego();
 		}
@@ -167,13 +179,17 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		}
 
 		if (e.getSource() == acercaDe) {
-			JOptionPane.showMessageDialog(null, "Desarrolladores: Adrià Queralt, Marc Padrell e Ixabel Justo");
+		//	JOptionPane.showMessageDialog(null, "Desarrolladores: Adrià Queralt, Marc Padrell e Ixabel Justo");
 			// Muestra nuestros nombres
+			AcercaDe acercaDe = new AcercaDe();
+			acercaDe.setVisible(true);
 		}
 
 		if (e.getSource() == comoJugar) {
+			Ayuda ayuda = new Ayuda();
+			ayuda.setVisible(true);
 			// create a JTextArea
-			JTextArea textArea = new JTextArea(6, 25);
+		/*	JTextArea textArea = new JTextArea(6, 25);
 			textArea.setText(instrucciones);
 			textArea.setEditable(false);
 
@@ -181,12 +197,12 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 			JScrollPane scrollPane = new JScrollPane(textArea);
 
 			// display them in a message dialog
-			JOptionPane.showMessageDialog(frame, scrollPane);
+			JOptionPane.showMessageDialog(frame, scrollPane);*/
 		}
 	}
 
 	public void crearBottonesIntento() {
-		for (int i = incrementoPosicion; i < incrementoPosicion + cantidadColores; i++) {
+		for (int i = incrementoPosicion; i < incrementoPosicion + numeroBottonesAMostrar; i++) {
 			JButton btnIntento = new JButton();
 			listBotonesIntento.add(btnIntento);
 			listBotonesIntentPosicion.add(0);// lista que sirve para validarlo
@@ -240,6 +256,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		xIntento = 50;
 		yIntento = (yIntento + 25);
 		repaint();
+	
 	}
 
 	public void crearBottonComprobar() {
@@ -286,14 +303,25 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 						}
 						xIntento = xIntento - (25 * comprobarColoresNegros());
 						if (win) {
-							JOptionPane.showMessageDialog(null, "¡¡VICTORIA!!");
-						}
-					
+							String msgPalette = "";
+							if(!desbloquearPalette) {
+								desbloquearPalette = true;	
+								msgPalette = "\nHAS DESBLOQUEADO LA NUEVA OPCION PALETTE";
+							}else {
+								msgPalette = "";
+							}
+							
+							
+							JOptionPane.showMessageDialog(null, "¡¡VICTORIA!!"+msgPalette);
+							mostrarCombinacionSecreta = false;
+							nuevoJuego();
+						}else {
+						
 						cantidadIntentosContador++;
-						incrementoPosicion = incrementoPosicion + cantidadColores;
+						incrementoPosicion = incrementoPosicion + numeroBottonesAMostrar;
 						crearBottonesIntento();
 						btnComprobarIntento.setVisible(false);
-						
+						}
 					} else {
 						JOptionPane.showMessageDialog(null, "GAME OVER");
 					}
@@ -366,8 +394,9 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 			contadorI++;
 		}
 		// System.out.println(contadorNegro);
-		if (contadorNegro == cantidadColores) {
+		if (contadorNegro == numeroBottonesAMostrar) {
 			win = true;
+			palette.setVisible(true);
 		}
 		repaint();
 		return contadorNegro;
@@ -431,7 +460,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		lbl_CombinacionSecreta.setBounds((x - 40), (y - 40), 150, 50);
 		contentPane.add(lbl_CombinacionSecreta);
 
-		for (int i = 0; i < cantidadColores; i++) {
+		for (int i = 0; i < numeroBottonesAMostrar; i++) {
 			JButton btnCombinacionSecreta = new JButton();
 			btnCombinacionSecreta.setVisible(false);
 			listBotonesCombinacionSecreta.add(btnCombinacionSecreta);
@@ -492,7 +521,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 	}
 
 	public void rellenarListaCombinacionSecreta() {
-		for (int i = 0; i < listColoresDisponibles.size(); i++) {
+		for (int i = 0; i < numeroBottonesAMostrar; i++) {
 			int posicionRandom = numRandom(0, listColoresDisponibles.size());
 			listCombinacionSecreta.add(listColoresDisponibles.get(posicionRandom));
 		}
@@ -513,30 +542,49 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 	}
 
 	public void nuevoJuego() {
+		reset();
+		
+		actualizarColoresDisponibles();
+		rellenarListaCombinacionSecreta();
+		crearBottonesListaColoresDisponibles();
+		crearBottonesCombinacionSecreta();
+		crearBottonesIntento();
+	}
+	
+	public void actualizarColoresPersonalizados() {
+		reset();
+	
+		//actualizarColoresDisponibles();
+		rellenarListaCombinacionSecreta();
+		crearBottonesListaColoresDisponibles();
+		crearBottonesCombinacionSecreta();
+		crearBottonesIntento();
+	}
+	public void reset() {
 		limpiezaListBotones(listBotonesColoresDisponibles);
 		limpiezaListBotones(listBotonesCombinacionSecreta);
 		limpiezaListBotones(listBotonesIntento);
 		limpiezaListBotones(listBotonesBlanco);
 		limpiezaListBotones(listBotonesNegro);
 		limpiezaListBotones(listBotonesCheck);
-		listColoresDisponibles.clear();
+		//listColoresDisponibles.clear();
 		listCombinacionSecreta.clear();
 		listBotonesIntentPosicion.clear();
 	
 		win = false;
+		mostrarCombinacionSecreta = false;
 		incrementoPosicion = 0;
 		nombreBottonIntento = 0;
 		cantidadIntentosContador = 0;
 		yIntento = 50;
 		xIntento = 50;
 		lblLeftRight.setText("");
+	}
 	
+	public void actualizarColoresDisponibles() {
+		listColoresDisponibles.clear();
 		ColoresDisponibles coloresDisponibles = new ColoresDisponibles(cantidadColores);
 		rellenarListColoresDisponibles(coloresDisponibles.getArrayColor());
-		rellenarListaCombinacionSecreta();
-		crearBottonesListaColoresDisponibles();
-		crearBottonesCombinacionSecreta();
-		crearBottonesIntento();
 	}
 
 	public int getCantidadColores() {
@@ -567,4 +615,11 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		MainJFrame.frame = frame;
 	}
 
+	public List<Color> getListColoresDisponibles() {
+		return listColoresDisponibles;
+	}
+
+	public void setListColoresDisponibles(List<Color> listColoresDisponibles) {
+		this.listColoresDisponibles = listColoresDisponibles;
+	}
 }

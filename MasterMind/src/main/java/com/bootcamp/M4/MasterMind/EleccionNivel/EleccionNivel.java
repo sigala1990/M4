@@ -6,13 +6,13 @@ import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.SystemColor;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JFrame;
+import com.bootcamp.M4.MasterMind.JFrame.MainJFrame;
 
 import javax.swing.JRadioButton;
-
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.WindowConstants;
@@ -24,7 +24,10 @@ public class EleccionNivel extends JFrame {
 
 	public static EleccionNivel frame;
 	private JPanel contentPane;
+	private int cantidadColores = 4;
+	private int cantidadIntentos = 10;
 	private JButton btnCancelar;
+	private boolean mainJframeOpen = false;
 
 	/**
 	 * Launch the application.
@@ -57,6 +60,8 @@ public class EleccionNivel extends JFrame {
 		contentPane.setLayout(null);
 		
 
+		ButtonGroup nivelesDificultad = new ButtonGroup();
+
 		JRadioButton rdbtnNivelPrincipiante = new JRadioButton("Principiante");
 		rdbtnNivelPrincipiante.setBackground(SystemColor.activeCaption);
 		
@@ -74,6 +79,10 @@ public class EleccionNivel extends JFrame {
 		rdbtnNivelAvanzado.setBackground(SystemColor.activeCaption);
 		rdbtnNivelAvanzado.setBounds(120, 120, 109, 23);
 		contentPane.add(rdbtnNivelAvanzado);
+
+		nivelesDificultad.add(rdbtnNivelPrincipiante);
+		nivelesDificultad.add(rdbtnNivelMedio);
+		nivelesDificultad.add(rdbtnNivelAvanzado);
 
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
@@ -100,7 +109,7 @@ public class EleccionNivel extends JFrame {
 		btnAceptar.setBounds(60, 165, 89, 23);
 		contentPane.add(btnAceptar);
 
-		btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -110,10 +119,8 @@ public class EleccionNivel extends JFrame {
 				jframe.setVisible(true);			
 				frame.setVisible(false);
 			}
+
 		});
-		// panel.close();
-		// JEleccionNivel.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-		// JEleccionNivel.setVisible(false);
 
 		btnCancelar.setBounds(170, 165, 89, 23);
 		contentPane.add(btnCancelar);
@@ -121,7 +128,24 @@ public class EleccionNivel extends JFrame {
 		
 	}
 
+	public static EleccionNivel getFrame() {
+		return frame;
+	}
 
-	
+	public void setFrame(EleccionNivel frame) {
+		EleccionNivel.frame = frame;
+	}
+
+	public int getCantidadColores() {
+
+		return cantidadColores;
+	}
+
+	public int getCantidadIntentos() {
+
+		return cantidadIntentos;
+	}
+
+
 
 }
