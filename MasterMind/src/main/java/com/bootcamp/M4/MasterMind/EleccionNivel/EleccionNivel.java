@@ -18,7 +18,6 @@ public class EleccionNivel extends JFrame {
 
 	public static EleccionNivel frame;
 	private JPanel contentPane;
-	private JButton btnCancelar;
 
 	/**
 	 * Launch the application.
@@ -40,7 +39,8 @@ public class EleccionNivel extends JFrame {
 	 * Create the frame.
 	 */
 	public EleccionNivel() {
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		// this.frame= new EleccionNivel();
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -48,7 +48,7 @@ public class EleccionNivel extends JFrame {
 		setContentPane(contentPane);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(24, 11, 400, 239);
+		panel.setBounds(24, 11, 200, 200);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -66,29 +66,29 @@ public class EleccionNivel extends JFrame {
 		panel.add(rdbtnNivelAvanzado);
 
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+	
+			}
+		});
 		btnAceptar.setBounds(91, 165, 89, 23);
 		panel.add(btnAceptar);
 
-		btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				//frame = new EleccionNivel();
-				if(frame != null) {
+	
 					frame.setVisible(false);
-				}			
+			
+
 			}
+
 		});
-		// panel.close();
-		// JEleccionNivel.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-		// JEleccionNivel.setVisible(false);
 
 		btnCancelar.setBounds(189, 165, 89, 23);
 		panel.add(btnCancelar);
 
-	}
-
-
 	
-
+	}
 }
