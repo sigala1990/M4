@@ -49,6 +49,7 @@ public class Palette extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public Palette(List<Color> ListColoresDisponibles,int cantidadColores, MainJFrame mainJFrame) {
+		setTitle("Cambiar color");
 		this.listColoresAntiguos = ListColoresDisponibles;
 		this.cantidadColores = cantidadColores;
 		this.mainJFrame = mainJFrame;

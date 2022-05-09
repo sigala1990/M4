@@ -9,7 +9,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,10 +19,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import com.bootcamp.M4.MasterMind.Ayuda.Ayuda;
 import com.bootcamp.M4.MasterMind.ColoresDisponibles.ColoresDisponibles;
 import com.bootcamp.M4.MasterMind.EleccionNivel.EleccionNivel;
 import com.bootcamp.M4.MasterMind.Palette.Palette;
@@ -36,7 +34,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 	private JMenuBar menuBar;
 	private JMenu archivo, ayuda, palette;
 	private JMenuItem nuevoJuego, salir, nivel, comoJugar, acercaDe, cambiarPalette;
-	private String instrucciones = "COMO SE JUEGA\n\nEn Mastermind compiten 2 jugadores, uno de \nellos creará un código oculto con 5 clavijas de \ncolores, pudiendo hacer las combinaciones con \nlos 8 colores disponibles e incluso repitiendo \ncolor si lo desea. El código de colores debe de \nocultarse con el escudo para que no pueda verlo \nel oponente, que deberá acertar en el menor \nnúmero posible de jugadas la clave para obtener \nuna buena puntuación. Para descifrar el código \nsecreto de colores el jugador deberá ir probando \ncombinaciones aleatorias de colores, y en cada \ncombinación, el jugador contrario debe darle \npistas mediante las espigas blancas y negras. \nPor cada clavija acertada en color y posición, \ncolocará una espiga negra, y por cada color \nacertado pero en un lugar equivocado colocará \nuna espiga blanca.";
+	//private String instrucciones = "COMO SE JUEGA\n\nEn Mastermind compiten 2 jugadores, uno de \nellos creará un código oculto con 5 clavijas de \ncolores, pudiendo hacer las combinaciones con \nlos 8 colores disponibles e incluso repitiendo \ncolor si lo desea. El código de colores debe de \nocultarse con el escudo para que no pueda verlo \nel oponente, que deberá acertar en el menor \nnúmero posible de jugadas la clave para obtener \nuna buena puntuación. Para descifrar el código \nsecreto de colores el jugador deberá ir probando \ncombinaciones aleatorias de colores, y en cada \ncombinación, el jugador contrario debe darle \npistas mediante las espigas blancas y negras. \nPor cada clavija acertada en color y posición, \ncolocará una espiga negra, y por cada color \nacertado pero en un lugar equivocado colocará \nuna espiga blanca.";
 	private List<JButton> listBotonesColoresDisponibles = new ArrayList<JButton>();
 	private List<Color> listColoresDisponibles = new ArrayList<Color>();
 	private List<JButton> listBotonesCombinacionSecreta = new ArrayList<JButton>();
@@ -79,6 +77,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public MainJFrame(int cantidadColores, int cantidadIntentos) {
+		setTitle("MasterMind");
 		this.cantidadColores = cantidadColores;
 		this.cantidadIntentos = cantidadIntentos;
 		win = false;
@@ -183,8 +182,10 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		}
 
 		if (e.getSource() == comoJugar) {
+			Ayuda ayuda = new Ayuda();
+			ayuda.setVisible(true);
 			// create a JTextArea
-			JTextArea textArea = new JTextArea(6, 25);
+		/*	JTextArea textArea = new JTextArea(6, 25);
 			textArea.setText(instrucciones);
 			textArea.setEditable(false);
 
@@ -192,7 +193,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 			JScrollPane scrollPane = new JScrollPane(textArea);
 
 			// display them in a message dialog
-			JOptionPane.showMessageDialog(frame, scrollPane);
+			JOptionPane.showMessageDialog(frame, scrollPane);*/
 		}
 	}
 
@@ -251,6 +252,7 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		xIntento = 50;
 		yIntento = (yIntento + 25);
 		repaint();
+	
 	}
 
 	public void crearBottonComprobar() {
@@ -536,24 +538,8 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 	}
 
 	public void nuevoJuego() {
-		limpiezaListBotones(listBotonesColoresDisponibles);
-		limpiezaListBotones(listBotonesCombinacionSecreta);
-		limpiezaListBotones(listBotonesIntento);
-		limpiezaListBotones(listBotonesBlanco);
-		limpiezaListBotones(listBotonesNegro);
-		limpiezaListBotones(listBotonesCheck);
-		listColoresDisponibles.clear();
-		listCombinacionSecreta.clear();
-		listBotonesIntentPosicion.clear();
-	
-		win = false;
-		incrementoPosicion = 0;
-		nombreBottonIntento = 0;
-		cantidadIntentosContador = 0;
-		yIntento = 50;
-		xIntento = 50;
-		lblLeftRight.setText("");
-	
+		reset();
+		
 		actualizarColoresDisponibles();
 		rellenarListaCombinacionSecreta();
 		crearBottonesListaColoresDisponibles();
@@ -562,6 +548,15 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 	}
 	
 	public void actualizarColoresPersonalizados() {
+		reset();
+	
+		//actualizarColoresDisponibles();
+		rellenarListaCombinacionSecreta();
+		crearBottonesListaColoresDisponibles();
+		crearBottonesCombinacionSecreta();
+		crearBottonesIntento();
+	}
+	public void reset() {
 		limpiezaListBotones(listBotonesColoresDisponibles);
 		limpiezaListBotones(listBotonesCombinacionSecreta);
 		limpiezaListBotones(listBotonesIntento);
@@ -579,18 +574,10 @@ public class MainJFrame extends javax.swing.JFrame implements ActionListener {
 		yIntento = 50;
 		xIntento = 50;
 		lblLeftRight.setText("");
-	
-		//actualizarColoresDisponibles();
-		rellenarListaCombinacionSecreta();
-		crearBottonesListaColoresDisponibles();
-		crearBottonesCombinacionSecreta();
-		crearBottonesIntento();
-	}
-	public void necesarioNuevoJuego() {
-		
 	}
 	
 	public void actualizarColoresDisponibles() {
+		listColoresDisponibles.clear();
 		ColoresDisponibles coloresDisponibles = new ColoresDisponibles(cantidadColores);
 		rellenarListColoresDisponibles(coloresDisponibles.getArrayColor());
 	}
