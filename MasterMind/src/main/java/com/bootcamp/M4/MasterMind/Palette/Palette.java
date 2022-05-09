@@ -86,10 +86,10 @@ public class Palette extends JFrame implements ActionListener {
 		int x = 90;
 		int y = 100;
 		for (int i = 0; i < cantidadColores; i++) {
-			JButton btn = new JButton(""+i);
+			JButton btn = new JButton("");
 			listBotones.add(btn);
 			listBotones.get(i).addActionListener(this);
-			listBotones.get(i).setBackground(listColoresAntiguos.get(i));
+			listBotones.get(i).setBackground(Color.white);
 			contentPane.add(listBotones.get(i));
 			btn.setBounds(x, y, 50, 50);
 			x = x + 60;
