@@ -17,14 +17,10 @@ import java.awt.event.ActionEvent;
 
 public class Ayuda extends JFrame {
 
-	
-//	private String text = "\"COMO SE JUEGA\n\n<html> En <br>Mastermind<html> compiten 2 jugadores, uno de \nellos creará un código oculto con 5 clavijas de \ncolores, pudiendo hacer las combinaciones con \nlos 8 colores disponibles e incluso repitiendo \ncolor si lo desea. El código de colores debe de \nocultarse con el escudo para que no pueda verlo \nel oponente, que deberá acertar en el menor \nnúmero posible de jugadas la clave para obtener \nuna buena puntuación. Para descifrar el código \nsecreto de colores el jugador deberá ir probando \ncombinaciones aleatorias de colores, y en cada \ncombinación, el jugador contrario debe darle \npistas mediante las espigas blancas y negras. \nPor cada clavija acertada en color y posición, \ncolocará una espiga negra, y por cada color \nacertado pero en un lugar equivocado colocará \nuna espiga blanca.";
 	private String text = "<html>COMO SE JUEGA<br><br>En Mastermind compiten 2 jugadores, uno de <br>ellos creará un código oculto con 5 clavijas de <br>	colores, pudiendo hacer las combinaciones con <br>	los 8 colores disponibles e incluso repitiendo <br>	color si lo desea. El código de colores debe de <br>	ocultarse con el escudo para que no pueda verlo <br>	el oponente, que deberá acertar en el menor <br>	número posible de jugadas la clave para obtener <br>	una buena puntuación. Para descifrar el código <br>	secreto de colores el jugador deberá ir probando <br>	combinaciones aleatorias de colores, y en cada <br>	combinación, el jugador contrario debe darle <br>	pistas mediante las espigas blancas y negras. <br>	Por cada clavija acertada en color y posición, <br>	colocará una espiga negra, y por cada color <br>	acertado pero en un lugar equivocado colocará <br>	una espiga blanca.</html>";
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
+	//Lanzar la aplicación
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -38,9 +34,7 @@ public class Ayuda extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	//Crear el Frame
 	public Ayuda() {
 		setTitle("Como se juega");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,7 +51,7 @@ public class Ayuda extends JFrame {
 		
 		JLabel txtComoSeJuega = new JLabel(text);
 		txtComoSeJuega.setFont(new Font("Alef", Font.PLAIN, 11));
-		//txtComoSeJuega.setText(text);
+
 		txtComoSeJuega.setBounds(374, 190, 300, 350);
 		contentPane.add(txtComoSeJuega);
 		
