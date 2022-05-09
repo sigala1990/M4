@@ -27,7 +27,7 @@ El número de *PictureBox* dependerá del nivel escogid por el jugador.
 - Guardar los Colores de los componentes en un vectpr para la siguiente branch de combinacionSecreta -> **"colores_disponibles"**
 - Por defecto -> 4 *PictureBoxes*
 
-### Branch 3: CombinaciónSecreta
+### Branch 3: ColmbinaciónSecreta
 
 El número de *PictureBox* dependerá del nivel escogid por el jugador.
 
