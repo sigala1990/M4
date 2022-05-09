@@ -3,12 +3,14 @@ package com.bootcamp.M4.MasterMind.EleccionNivel;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JFrame;
+import com.bootcamp.M4.MasterMind.JFrame.MainJFrame;
 
 import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 import javax.swing.WindowConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -18,7 +20,10 @@ public class EleccionNivel extends JFrame {
 
 	public static EleccionNivel frame;
 	private JPanel contentPane;
+	private int cantidadColores = 4;
+	private int cantidadIntentos = 10;
 	private JButton btnCancelar;
+	private boolean mainJframeOpen = false;
 
 	// Lanzar la aplicación
 	
@@ -38,7 +43,7 @@ public class EleccionNivel extends JFrame {
 	//Crear el frame
 	
 	public EleccionNivel() {
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -51,9 +56,14 @@ public class EleccionNivel extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 
+<<<<<<< HEAD
 		//Botones para escoger el nivel
 		
 		//Botón nivel Principiante
+=======
+		ButtonGroup nivelesDificultad = new ButtonGroup();
+
+>>>>>>> branch 'development' of https://github.com/sigala1990/M4.git
 		JRadioButton rdbtnNivelPrincipiante = new JRadioButton("Principiante");
 		rdbtnNivelPrincipiante.setBounds(141, 66, 109, 23);
 		panel.add(rdbtnNivelPrincipiante);
@@ -71,28 +81,91 @@ public class EleccionNivel extends JFrame {
 		rdbtnNivelAvanzado.setBounds(141, 120, 109, 23);
 		panel.add(rdbtnNivelAvanzado);
 
+<<<<<<< HEAD
 		//Botón para aceptar cuando hayas escogido el nivel
+=======
+		nivelesDificultad.add(rdbtnNivelPrincipiante);
+		nivelesDificultad.add(rdbtnNivelMedio);
+		nivelesDificultad.add(rdbtnNivelAvanzado);
+
+>>>>>>> branch 'development' of https://github.com/sigala1990/M4.git
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (rdbtnNivelMedio.isSelected()) {
+					cantidadColores = 5;
+					cantidadIntentos = 8;
+
+				} else if (rdbtnNivelAvanzado.isSelected()) {
+					cantidadColores = 6;
+					cantidadIntentos = 6;
+				}
+				MainJFrame jframe = new MainJFrame(cantidadColores, cantidadIntentos);
+				jframe.setFrame(jframe);
+				jframe.setVisible(true);
+				
+					frame.setVisible(false);
+				// System.out.println(getCantidadColores());
+				// System.out.println(getCantidadIntentos());
+			}
+		});
+
 		btnAceptar.setBounds(91, 165, 89, 23);
 		panel.add(btnAceptar);
 
+<<<<<<< HEAD
 		//Botón para cancelar
 		btnCancelar = new JButton("Cancelar");
+=======
+		JButton btnCancelar = new JButton("Cancelar");
+>>>>>>> branch 'development' of https://github.com/sigala1990/M4.git
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
+<<<<<<< HEAD
 				if(frame != null) {
 					frame.setVisible(false);
 				}			
+=======
+				//MainJFrame.mainJFrameOpen();
+				MainJFrame jframe = new MainJFrame(cantidadColores, cantidadIntentos);
+				jframe.setFrame(jframe);
+				jframe.setVisible(true);
+			
+				frame.setVisible(false);
+>>>>>>> branch 'development' of https://github.com/sigala1990/M4.git
 			}
+
 		});
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> branch 'development' of https://github.com/sigala1990/M4.git
 		btnCancelar.setBounds(189, 165, 89, 23);
 		panel.add(btnCancelar);
 
 	}
 
+	public static EleccionNivel getFrame() {
+		return frame;
+	}
 
-	
+	public void setFrame(EleccionNivel frame) {
+		EleccionNivel.frame = frame;
+	}
+
+	public int getCantidadColores() {
+
+		return cantidadColores;
+	}
+
+	public int getCantidadIntentos() {
+
+		return cantidadIntentos;
+	}
+
+
 
 }

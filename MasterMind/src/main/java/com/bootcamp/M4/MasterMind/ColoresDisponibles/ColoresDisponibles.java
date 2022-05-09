@@ -19,7 +19,7 @@ public class ColoresDisponibles {
 		boolean repetido = true;
 		
 		listaColores.add("yellow");
-		listaColores.add("white");
+		listaColores.add("magenta");
 		listaColores.add("blue");
 		listaColores.add("red");
 		listaColores.add("green");
@@ -51,7 +51,7 @@ public class ColoresDisponibles {
 		case 4:
 			return "green";
 		case 5:
-			return "white";
+			return "magenta";
 		default:
 			return null;			
 		}
